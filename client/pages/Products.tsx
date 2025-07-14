@@ -658,7 +658,7 @@ export default function Products() {
                         >
                           <span className="font-medium text-sm">{key}</span>
                           <span className="text-sm text-muted-foreground text-right">
-                            {value}
+                            {String(value)}
                           </span>
                         </div>
                       ),
