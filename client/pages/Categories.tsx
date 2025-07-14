@@ -34,7 +34,6 @@ import {
   ChefHat,
   Dumbbell,
   Bike,
-  Football,
   Book,
   Palette,
   Baby,
