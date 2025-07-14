@@ -15,6 +15,15 @@ import {
 } from "@/components/ui/select";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Separator } from "@/components/ui/separator";
+import {
   Search,
   Star,
   Heart,
@@ -23,6 +32,15 @@ import {
   SlidersHorizontal,
   Grid3X3,
   List,
+  Eye,
+  Package,
+  Award,
+  Zap,
+  ChevronLeft,
+  ChevronRight,
+  CheckCircle,
+  AlertTriangle,
+  Truck,
 } from "lucide-react";
 
 export default function Products() {
