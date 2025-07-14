@@ -344,16 +344,19 @@ export default function Deals() {
             Up to 70% off on selected items. Limited time offers with exclusive
             deals!
           </p>
-          <div className="flex justify-center items-center gap-4 text-2xl font-mono">
-            <div className="bg-white text-destructive px-4 py-2 rounded-lg">
+          <div className="flex justify-center items-center gap-2 md:gap-4 text-xl md:text-2xl font-mono">
+            <div className="bg-white text-destructive px-3 md:px-4 py-2 rounded-lg shadow-lg">
+              <span className="block text-sm text-muted-foreground">Hours</span>
               {String(timeLeft.hours).padStart(2, "0")}
             </div>
-            <span>:</span>
-            <div className="bg-white text-destructive px-4 py-2 rounded-lg">
+            <span className="animate-pulse">:</span>
+            <div className="bg-white text-destructive px-3 md:px-4 py-2 rounded-lg shadow-lg">
+              <span className="block text-sm text-muted-foreground">Min</span>
               {String(timeLeft.minutes).padStart(2, "0")}
             </div>
-            <span>:</span>
-            <div className="bg-white text-destructive px-4 py-2 rounded-lg">
+            <span className="animate-pulse">:</span>
+            <div className="bg-white text-destructive px-3 md:px-4 py-2 rounded-lg shadow-lg">
+              <span className="block text-sm text-muted-foreground">Sec</span>
               {String(timeLeft.seconds).padStart(2, "0")}
             </div>
           </div>
