@@ -42,6 +42,7 @@ import {
   AlertTriangle,
   Truck,
 } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export default function Products() {
   const [searchQuery, setSearchQuery] = useState("");
