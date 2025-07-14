@@ -1069,77 +1069,89 @@ export default function Products() {
             ) : (
               <div className="space-y-4">
                 {filteredProducts.map((product) => (
-                  <Card
-                    key={product.id}
-                    className="group cursor-pointer hover:shadow-lg transition-all duration-300"
-                  >
-                    <CardContent className="p-6">
-                      <div className="flex gap-6">
-                        <div className="relative w-32 h-32 flex-shrink-0">
-                          <img
-                            src={product.image}
-                            alt={product.name}
-                            className="w-full h-full object-cover rounded-lg"
-                          />
-                          {product.badge && (
-                            <Badge className="absolute top-2 left-2 text-xs">
-                              {product.badge}
-                            </Badge>
-                          )}
-                        </div>
-                        <div className="flex-1 space-y-3">
-                          <div>
-                            <h3 className="text-lg font-semibold">
-                              {product.name}
-                            </h3>
-                            <p className="text-sm text-muted-foreground">
-                              {product.brand} • {product.category}
-                            </p>
-                          </div>
-                          <div className="flex items-center gap-1">
-                            <div className="flex">
-                              {[...Array(5)].map((_, i) => (
-                                <Star
-                                  key={i}
-                                  className={`h-4 w-4 ${
-                                    i < Math.floor(product.rating)
-                                      ? "text-yellow-400 fill-current"
-                                      : "text-gray-300"
-                                  }`}
-                                />
-                              ))}
-                            </div>
-                            <span className="text-sm text-muted-foreground">
-                              ({product.reviews} reviews)
-                            </span>
-                          </div>
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-2">
-                              <span className="text-xl font-bold">
-                                ${product.price}
-                              </span>
-                              {product.originalPrice !== product.price && (
-                                <span className="text-sm text-muted-foreground line-through">
-                                  ${product.originalPrice}
-                                </span>
+                  <Dialog key={product.id}>
+                    <DialogTrigger asChild>
+                      <Card className="group cursor-pointer hover:shadow-lg transition-all duration-300">
+                        <CardContent className="p-6">
+                          <div className="flex gap-6">
+                            <div className="relative w-32 h-32 flex-shrink-0">
+                              <img
+                                src={product.image}
+                                alt={product.name}
+                                className="w-full h-full object-cover rounded-lg transition-transform group-hover:scale-105"
+                              />
+                              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 rounded-lg flex items-center justify-center transition-colors">
+                                <Eye className="w-5 h-5 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
+                              </div>
+                              {product.badge && (
+                                <Badge className="absolute top-2 left-2 text-xs">
+                                  {product.badge}
+                                </Badge>
                               )}
                             </div>
-                            <div className="flex gap-2">
-                              <Button size="icon" variant="outline">
-                                <Heart className="h-4 w-4" />
-                              </Button>
-                              <Button disabled={!product.inStock}>
-                                <ShoppingCart className="h-4 w-4 mr-2" />
-                                {product.inStock
-                                  ? "Add to Cart"
-                                  : "Out of Stock"}
-                              </Button>
+                            <div className="flex-1 space-y-3">
+                              <div>
+                                <h3 className="text-lg font-semibold hover:text-primary transition-colors">
+                                  {product.name}
+                                </h3>
+                                <p className="text-sm text-muted-foreground">
+                                  {product.brand} • {product.category}
+                                </p>
+                              </div>
+                              <div className="flex items-center gap-1">
+                                <div className="flex">
+                                  {[...Array(5)].map((_, i) => (
+                                    <Star
+                                      key={i}
+                                      className={`h-4 w-4 ${
+                                        i < Math.floor(product.rating)
+                                          ? "text-yellow-400 fill-current"
+                                          : "text-gray-300"
+                                      }`}
+                                    />
+                                  ))}
+                                </div>
+                                <span className="text-sm text-muted-foreground">
+                                  ({product.reviews} reviews)
+                                </span>
+                              </div>
+                              <div className="flex items-center justify-between">
+                                <div className="flex items-center gap-2">
+                                  <span className="text-xl font-bold">
+                                    ${product.price}
+                                  </span>
+                                  {product.originalPrice !== product.price && (
+                                    <span className="text-sm text-muted-foreground line-through">
+                                      ${product.originalPrice}
+                                    </span>
+                                  )}
+                                </div>
+                                <div className="flex gap-2">
+                                  <Button
+                                    size="icon"
+                                    variant="outline"
+                                    onClick={(e) => e.stopPropagation()}
+                                  >
+                                    <Heart className="h-4 w-4" />
+                                  </Button>
+                                  <Button
+                                    disabled={!product.inStock}
+                                    onClick={(e) => e.stopPropagation()}
+                                  >
+                                    <ShoppingCart className="h-4 w-4 mr-2" />
+                                    {product.inStock
+                                      ? "Add to Cart"
+                                      : "Out of Stock"}
+                                  </Button>
+                                </div>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
+                        </CardContent>
+                      </Card>
+                    </DialogTrigger>
+                    <ProductDetailModal product={product} />
+                  </Dialog>
                 ))}
               </div>
             )}
