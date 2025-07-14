@@ -75,7 +75,8 @@ export default function Deals() {
       originalPrice: 299.99,
       dealPrice: 149.99,
       discount: 50,
-      image: "/placeholder.svg",
+      image:
+        "https://cdn.builder.io/api/v1/image/assets%2F4c6409e754274ac6a8c3caf8620ed822%2F64c6e6170dfb41c997c833f5332eee03",
       rating: 4.8,
       reviews: 245,
       stock: 12,
@@ -91,7 +92,8 @@ export default function Deals() {
       originalPrice: 199.99,
       dealPrice: 99.99,
       discount: 50,
-      image: "/placeholder.svg",
+      image:
+        "https://cdn.builder.io/api/v1/image/assets%2F4c6409e754274ac6a8c3caf8620ed822%2F44d3d9f05b0140bdbbb6589c07d6d85d",
       rating: 4.7,
       reviews: 189,
       stock: 8,
@@ -107,7 +109,8 @@ export default function Deals() {
       originalPrice: 1299.99,
       dealPrice: 899.99,
       discount: 31,
-      image: "/placeholder.svg",
+      image:
+        "https://cdn.builder.io/api/v1/image/assets%2F4c6409e754274ac6a8c3caf8620ed822%2Fbd44033fd7f048c990dbef1d7f0c23bb",
       rating: 4.9,
       reviews: 98,
       stock: 25,
@@ -126,7 +129,8 @@ export default function Deals() {
       originalPrice: 89.99,
       dealPrice: 29.99,
       discount: 67,
-      image: "/placeholder.svg",
+      image:
+        "https://cdn.builder.io/api/v1/image/assets%2F4c6409e754274ac6a8c3caf8620ed822%2F37580571b6874b36bc60fff960f1e845",
       rating: 4.5,
       reviews: 324,
       stock: 45,
@@ -141,7 +145,8 @@ export default function Deals() {
       originalPrice: 129.99,
       dealPrice: 79.99,
       discount: 38,
-      image: "/placeholder.svg",
+      image:
+        "https://cdn.builder.io/api/v1/image/assets%2F4c6409e754274ac6a8c3caf8620ed822%2Fb86cd9b4d4b8490e8e680289c39fef16",
       rating: 4.6,
       reviews: 156,
       stock: 20,
