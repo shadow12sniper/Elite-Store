@@ -104,6 +104,11 @@ export default function Cart() {
       originalPrice: 299.99,
       image:
         "https://cdn.builder.io/api/v1/image/assets%2F4c6409e754274ac6a8c3caf8620ed822%2F64c6e6170dfb41c997c833f5332eee03",
+      images: [
+        "https://cdn.builder.io/api/v1/image/assets%2F4c6409e754274ac6a8c3caf8620ed822%2F64c6e6170dfb41c997c833f5332eee03",
+        "https://cdn.builder.io/api/v1/image/assets%2F4c6409e754274ac6a8c3caf8620ed822%2F37580571b6874b36bc60fff960f1e845",
+        "https://cdn.builder.io/api/v1/image/assets%2F4c6409e754274ac6a8c3caf8620ed822%2Fb86cd9b4d4b8490e8e680289c39fef16",
+      ],
       quantity: 2,
       variant: { color: "Space Gray", size: "42mm" },
       inStock: true,
@@ -111,6 +116,53 @@ export default function Cart() {
       estimatedDelivery: "Dec 24-26",
       rating: 4.8,
       reviews: 245,
+      category: "Electronics",
+      brand: "TechPro",
+      description:
+        "Advanced smartwatch with health monitoring, GPS tracking, and 7-day battery life. Features include heart rate monitoring, sleep tracking, water resistance up to 50m, and smart notifications.",
+      features: [
+        "7-day battery life",
+        "Heart rate monitoring",
+        "GPS tracking",
+        "Water resistant (50m)",
+        "Sleep tracking",
+        "Smart notifications",
+        "Fitness tracking",
+        "Voice assistant",
+      ],
+      specifications: {
+        Display: '1.4" AMOLED, 454x454 resolution',
+        Battery: "7 days typical use",
+        Connectivity: "Bluetooth 5.0, WiFi, GPS",
+        Sensors: "Heart rate, SpO2, Accelerometer, Gyroscope",
+        "Water Resistance": "5ATM (50 meters)",
+        Compatibility: "iOS 12+, Android 6+",
+        Storage: "4GB internal",
+        Weight: "52g",
+      },
+      reviewSummary: {
+        totalReviews: 245,
+        averageRating: 4.8,
+        ratingBreakdown: { 5: 180, 4: 45, 3: 15, 2: 3, 1: 2 },
+        topReviews: [
+          {
+            user: "Sarah M.",
+            rating: 5,
+            comment:
+              "Amazing battery life and accurate health tracking. Best smartwatch I've owned!",
+            date: "Dec 15, 2024",
+            verified: true,
+          },
+          {
+            user: "Mike R.",
+            rating: 5,
+            comment:
+              "Perfect for fitness tracking. The GPS is very accurate and the interface is intuitive.",
+            date: "Dec 10, 2024",
+            verified: true,
+          },
+        ],
+      },
     },
     {
       id: "2",
@@ -119,6 +171,10 @@ export default function Cart() {
       originalPrice: 199.99,
       image:
         "https://cdn.builder.io/api/v1/image/assets%2F4c6409e754274ac6a8c3caf8620ed822%2F44d3d9f05b0140bdbbb6589c07d6d85d",
+      images: [
+        "https://cdn.builder.io/api/v1/image/assets%2F4c6409e754274ac6a8c3caf8620ed822%2F44d3d9f05b0140bdbbb6589c07d6d85d",
+        "https://cdn.builder.io/api/v1/image/assets%2F4c6409e754274ac6a8c3caf8620ed822%2Fb86cd9b4d4b8490e8e680289c39fef16",
+      ],
       quantity: 1,
       variant: { color: "Midnight Blue" },
       inStock: true,
@@ -126,6 +182,53 @@ export default function Cart() {
       estimatedDelivery: "Dec 22-24",
       rating: 4.7,
       reviews: 189,
+      category: "Electronics",
+      brand: "AudioMax",
+      description:
+        "Premium wireless headphones with active noise cancellation, 30-hour battery, and studio-quality sound. Perfect for music, calls, and travel.",
+      features: [
+        "Active noise cancellation",
+        "30-hour battery life",
+        "Quick charge (5 min = 3 hours)",
+        "Premium sound quality",
+        "Comfortable over-ear design",
+        "Voice assistant support",
+        "Foldable design",
+        "Multi-device connectivity",
+      ],
+      specifications: {
+        "Driver Size": "40mm dynamic drivers",
+        "Frequency Response": "20Hz - 20kHz",
+        "Battery Life": "30 hours with ANC off, 20 hours with ANC on",
+        Charging: "USB-C, 5min quick charge = 3 hours",
+        Weight: "290g",
+        Connectivity: "Bluetooth 5.2, 3.5mm jack",
+        "Noise Cancellation": "Active ANC up to 30dB reduction",
+        Microphone: "Dual beamforming mics",
+      },
+      reviewSummary: {
+        totalReviews: 189,
+        averageRating: 4.7,
+        ratingBreakdown: { 5: 140, 4: 35, 3: 10, 2: 3, 1: 1 },
+        topReviews: [
+          {
+            user: "Alex K.",
+            rating: 5,
+            comment:
+              "Incredible sound quality and the noise cancellation is fantastic for flights.",
+            date: "Dec 12, 2024",
+            verified: true,
+          },
+          {
+            user: "Emma L.",
+            rating: 4,
+            comment:
+              "Very comfortable for long listening sessions. Great value for the price.",
+            date: "Dec 8, 2024",
+            verified: true,
+          },
+        ],
+      },
     },
     {
       id: "3",
@@ -133,6 +236,10 @@ export default function Cart() {
       price: 79.99,
       image:
         "https://cdn.builder.io/api/v1/image/assets%2F4c6409e754274ac6a8c3caf8620ed822%2Fbd44033fd7f048c990dbef1d7f0c23bb",
+      images: [
+        "https://cdn.builder.io/api/v1/image/assets%2F4c6409e754274ac6a8c3caf8620ed822%2Fbd44033fd7f048c990dbef1d7f0c23bb",
+        "https://cdn.builder.io/api/v1/image/assets%2F4c6409e754274ac6a8c3caf8620ed822%2Ff215ae6483b64ba2a66ad39f235b3cd4",
+      ],
       quantity: 1,
       variant: { color: "RGB", model: "Mechanical" },
       inStock: false,
@@ -140,6 +247,45 @@ export default function Cart() {
       estimatedDelivery: "Jan 2-5",
       rating: 4.5,
       reviews: 98,
+      category: "Electronics",
+      brand: "GamePro",
+      description:
+        "Mechanical gaming keyboard with RGB backlighting, programmable keys, and ultra-fast response times. Built for competitive gaming.",
+      features: [
+        "Mechanical blue switches",
+        "RGB backlighting",
+        "Programmable keys",
+        "Anti-ghosting technology",
+        "Durable aluminum frame",
+        "USB-C connectivity",
+        "Gaming mode",
+        "Media controls",
+      ],
+      specifications: {
+        "Switch Type": "Mechanical Blue Switches",
+        "Key Layout": "104-key full size",
+        Backlighting: "RGB with 16.7M colors",
+        Connectivity: "USB-C wired",
+        "Polling Rate": "1000Hz",
+        "Response Time": "1ms",
+        Material: "Aluminum top plate",
+        Dimensions: "440 x 135 x 35mm",
+      },
+      reviewSummary: {
+        totalReviews: 98,
+        averageRating: 4.5,
+        ratingBreakdown: { 5: 60, 4: 25, 3: 10, 2: 2, 1: 1 },
+        topReviews: [
+          {
+            user: "Gaming Pro",
+            rating: 5,
+            comment:
+              "Perfect for competitive gaming. The switches are responsive and the RGB looks amazing.",
+            date: "Dec 5, 2024",
+            verified: true,
+          },
+        ],
+      },
     },
   ]);
 
