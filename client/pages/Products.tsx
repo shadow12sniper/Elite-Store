@@ -447,6 +447,354 @@ export default function Products() {
     }
   };
 
+  const ProductDetailModal = ({ product }: { product: any }) => {
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const images = product.images || [product.image];
+
+    const nextImage = () => {
+      setCurrentImageIndex((prev) => (prev + 1) % images.length);
+    };
+
+    const prevImage = () => {
+      setCurrentImageIndex(
+        (prev) => (prev - 1 + images.length) % images.length,
+      );
+    };
+
+    return (
+      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+        <DialogHeader>
+          <DialogTitle className="flex items-center gap-3">
+            <Package className="w-6 h-6" />
+            {product.name}
+          </DialogTitle>
+        </DialogHeader>
+
+        <div className="grid md:grid-cols-2 gap-6">
+          {/* Product Images */}
+          <div className="space-y-4">
+            <div className="relative">
+              <img
+                src={images[currentImageIndex]}
+                alt={product.name}
+                className="w-full h-80 object-cover rounded-lg"
+              />
+              {images.length > 1 && (
+                <>
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-background/80"
+                    onClick={prevImage}
+                  >
+                    <ChevronLeft className="w-4 h-4" />
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-background/80"
+                    onClick={nextImage}
+                  >
+                    <ChevronRight className="w-4 h-4" />
+                  </Button>
+                </>
+              )}
+              <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex gap-1">
+                {images.map((_, index) => (
+                  <button
+                    key={index}
+                    className={cn(
+                      "w-2 h-2 rounded-full",
+                      index === currentImageIndex
+                        ? "bg-primary"
+                        : "bg-background/60",
+                    )}
+                    onClick={() => setCurrentImageIndex(index)}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* Thumbnail Gallery */}
+            {images.length > 1 && (
+              <div className="flex gap-2 overflow-x-auto">
+                {images.map((img, index) => (
+                  <button
+                    key={index}
+                    className={cn(
+                      "flex-shrink-0 w-16 h-16 rounded border-2 overflow-hidden",
+                      index === currentImageIndex
+                        ? "border-primary"
+                        : "border-muted",
+                    )}
+                    onClick={() => setCurrentImageIndex(index)}
+                  >
+                    <img
+                      src={img}
+                      alt=""
+                      className="w-full h-full object-cover"
+                    />
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Product Details */}
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <div className="flex items-center gap-2">
+                <Badge variant="outline">{product.brand}</Badge>
+                <Badge variant="secondary">{product.category}</Badge>
+                {product.badge && (
+                  <Badge className="bg-primary">{product.badge}</Badge>
+                )}
+              </div>
+
+              <div className="flex items-center gap-2">
+                <div className="flex">
+                  {[...Array(5)].map((_, i) => (
+                    <Star
+                      key={i}
+                      className={`h-4 w-4 ${
+                        i < Math.floor(product.rating)
+                          ? "text-yellow-400 fill-current"
+                          : "text-gray-300"
+                      }`}
+                    />
+                  ))}
+                </div>
+                <span className="text-sm text-muted-foreground">
+                  {product.rating} ({product.reviews} reviews)
+                </span>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <span className="text-2xl font-bold">${product.price}</span>
+                {product.originalPrice && (
+                  <>
+                    <span className="text-lg text-muted-foreground line-through">
+                      ${product.originalPrice}
+                    </span>
+                    <Badge className="bg-destructive">
+                      {Math.round(
+                        ((product.originalPrice - product.price) /
+                          product.originalPrice) *
+                          100,
+                      )}
+                      % OFF
+                    </Badge>
+                  </>
+                )}
+              </div>
+
+              <div className="flex items-center gap-2">
+                {product.inStock ? (
+                  <Badge className="bg-success">
+                    <CheckCircle className="w-3 h-3 mr-1" />
+                    In Stock ({product.stockCount} available)
+                  </Badge>
+                ) : (
+                  <Badge variant="destructive">
+                    <AlertTriangle className="w-3 h-3 mr-1" />
+                    Out of Stock
+                  </Badge>
+                )}
+              </div>
+
+              <div className="flex items-center gap-2 text-sm text-success">
+                <Truck className="w-4 h-4" />
+                <span>Estimated delivery: {product.estimatedDelivery}</span>
+              </div>
+            </div>
+
+            <Separator />
+
+            <Tabs defaultValue="description" className="w-full">
+              <TabsList className="grid w-full grid-cols-3">
+                <TabsTrigger value="description">Description</TabsTrigger>
+                <TabsTrigger value="specs">Specifications</TabsTrigger>
+                <TabsTrigger value="reviews">Reviews</TabsTrigger>
+              </TabsList>
+
+              <TabsContent value="description" className="space-y-4">
+                <div>
+                  <h4 className="font-semibold mb-2">About this product</h4>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {product.description}
+                  </p>
+                </div>
+
+                {product.features && (
+                  <div>
+                    <h4 className="font-semibold mb-2 flex items-center gap-2">
+                      <Zap className="w-4 h-4" />
+                      Key Features
+                    </h4>
+                    <ul className="space-y-1">
+                      {product.features.map((feature, index) => (
+                        <li
+                          key={index}
+                          className="text-sm flex items-center gap-2"
+                        >
+                          <CheckCircle className="w-3 h-3 text-success flex-shrink-0" />
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </TabsContent>
+
+              <TabsContent value="specs" className="space-y-2">
+                {product.specifications && (
+                  <div className="space-y-2">
+                    {Object.entries(product.specifications).map(
+                      ([key, value]) => (
+                        <div
+                          key={key}
+                          className="flex justify-between py-2 border-b border-muted"
+                        >
+                          <span className="font-medium text-sm">{key}</span>
+                          <span className="text-sm text-muted-foreground text-right">
+                            {value}
+                          </span>
+                        </div>
+                      ),
+                    )}
+                  </div>
+                )}
+              </TabsContent>
+
+              <TabsContent value="reviews" className="space-y-4">
+                {product.reviewSummary && (
+                  <>
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-4">
+                        <div className="text-center">
+                          <div className="text-3xl font-bold">
+                            {product.reviewSummary.averageRating}
+                          </div>
+                          <div className="flex">
+                            {[...Array(5)].map((_, i) => (
+                              <Star
+                                key={i}
+                                className={`h-4 w-4 ${
+                                  i <
+                                  Math.floor(
+                                    product.reviewSummary.averageRating,
+                                  )
+                                    ? "text-yellow-400 fill-current"
+                                    : "text-gray-300"
+                                }`}
+                              />
+                            ))}
+                          </div>
+                          <div className="text-sm text-muted-foreground">
+                            {product.reviewSummary.totalReviews} reviews
+                          </div>
+                        </div>
+
+                        <div className="flex-1 space-y-1">
+                          {[5, 4, 3, 2, 1].map((rating) => (
+                            <div
+                              key={rating}
+                              className="flex items-center gap-2"
+                            >
+                              <span className="text-sm w-3">{rating}</span>
+                              <Star className="w-3 h-3 text-yellow-400 fill-current" />
+                              <div className="flex-1 bg-muted rounded-full h-2">
+                                <div
+                                  className="bg-yellow-400 h-2 rounded-full"
+                                  style={{
+                                    width: `${
+                                      ((product.reviewSummary.ratingBreakdown[
+                                        rating
+                                      ] || 0) /
+                                        product.reviewSummary.totalReviews) *
+                                      100
+                                    }%`,
+                                  }}
+                                />
+                              </div>
+                              <span className="text-sm w-8 text-right">
+                                {product.reviewSummary.ratingBreakdown[
+                                  rating
+                                ] || 0}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    <Separator />
+
+                    <div className="space-y-4">
+                      <h4 className="font-semibold flex items-center gap-2">
+                        <Award className="w-4 h-4" />
+                        Top Reviews
+                      </h4>
+                      {product.reviewSummary.topReviews.map((review, index) => (
+                        <div
+                          key={index}
+                          className="space-y-2 p-3 border rounded-lg"
+                        >
+                          <div className="flex items-center gap-2">
+                            <span className="font-medium text-sm">
+                              {review.user}
+                            </span>
+                            {review.verified && (
+                              <Badge variant="outline" className="text-xs">
+                                <CheckCircle className="w-3 h-3 mr-1" />
+                                Verified
+                              </Badge>
+                            )}
+                            <span className="text-xs text-muted-foreground ml-auto">
+                              {review.date}
+                            </span>
+                          </div>
+                          <div className="flex">
+                            {[...Array(5)].map((_, i) => (
+                              <Star
+                                key={i}
+                                className={`h-3 w-3 ${
+                                  i < review.rating
+                                    ? "text-yellow-400 fill-current"
+                                    : "text-gray-300"
+                                }`}
+                              />
+                            ))}
+                          </div>
+                          <p className="text-sm text-muted-foreground">
+                            {review.comment}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </>
+                )}
+              </TabsContent>
+            </Tabs>
+
+            <Separator />
+
+            {/* Action Buttons */}
+            <div className="flex gap-2">
+              <Button className="flex-1">
+                <ShoppingCart className="w-4 h-4 mr-2" />
+                Add to Cart
+              </Button>
+              <Button variant="outline" size="icon">
+                <Heart className="w-4 w-4" />
+              </Button>
+            </div>
+          </div>
+        </div>
+      </DialogContent>
+    );
+  };
+
   const FilterSidebar = () => (
     <div className="w-full space-y-6">
       <div>
