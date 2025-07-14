@@ -46,6 +46,15 @@ import {
   Lock,
   Info,
   Star,
+  Eye,
+  Package,
+  Award,
+  Zap,
+  Smartphone,
+  Monitor,
+  Headphones,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
