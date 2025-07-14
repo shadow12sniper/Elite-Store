@@ -102,6 +102,9 @@ export function Header() {
               </DropdownMenuTrigger>
               <DropdownMenuContent>
                 <DropdownMenuItem asChild>
+                  <Link to="/categories">All Categories</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
                   <Link to="/categories/electronics">Electronics</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
