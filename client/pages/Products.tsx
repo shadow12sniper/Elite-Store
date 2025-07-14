@@ -59,12 +59,63 @@ export default function Products() {
       originalPrice: 249.99,
       image:
         "https://cdn.builder.io/api/v1/image/assets%2F4c6409e754274ac6a8c3caf8620ed822%2F38c5e4ef6f8545daa1572c07ead7e14f",
+      images: [
+        "https://cdn.builder.io/api/v1/image/assets%2F4c6409e754274ac6a8c3caf8620ed822%2F38c5e4ef6f8545daa1572c07ead7e14f",
+        "https://cdn.builder.io/api/v1/image/assets%2F4c6409e754274ac6a8c3caf8620ed822%2F44d3d9f05b0140bdbbb6589c07d6d85d",
+      ],
       rating: 4.8,
       reviews: 245,
       badge: "Best Seller",
       category: "Electronics",
       brand: "TechPro",
       inStock: true,
+      stockCount: 25,
+      estimatedDelivery: "Dec 22-24",
+      description:
+        "Premium wireless headphones with active noise cancellation, 30-hour battery, and studio-quality sound. Perfect for music, calls, and travel.",
+      features: [
+        "Active noise cancellation",
+        "30-hour battery life",
+        "Quick charge (5 min = 3 hours)",
+        "Premium sound quality",
+        "Comfortable over-ear design",
+        "Voice assistant support",
+        "Foldable design",
+        "Multi-device connectivity",
+      ],
+      specifications: {
+        "Driver Size": "40mm dynamic drivers",
+        "Frequency Response": "20Hz - 20kHz",
+        "Battery Life": "30 hours with ANC off, 20 hours with ANC on",
+        Charging: "USB-C, 5min quick charge = 3 hours",
+        Weight: "290g",
+        Connectivity: "Bluetooth 5.2, 3.5mm jack",
+        "Noise Cancellation": "Active ANC up to 30dB reduction",
+        Microphone: "Dual beamforming mics",
+      },
+      reviewSummary: {
+        totalReviews: 245,
+        averageRating: 4.8,
+        ratingBreakdown: { 5: 185, 4: 40, 3: 15, 2: 3, 1: 2 },
+        topReviews: [
+          {
+            user: "Alex K.",
+            rating: 5,
+            comment:
+              "Incredible sound quality and the noise cancellation is fantastic for flights.",
+            date: "Dec 12, 2024",
+            verified: true,
+          },
+          {
+            user: "Emma L.",
+            rating: 4,
+            comment:
+              "Very comfortable for long listening sessions. Great value for the price.",
+            date: "Dec 8, 2024",
+            verified: true,
+          },
+        ],
+      },
     },
     {
       id: 2,
@@ -73,25 +124,112 @@ export default function Products() {
       originalPrice: 399.99,
       image:
         "https://cartzilla.madrasthemes.com/electronics/wp-content/uploads/sites/2/2020/03/7.jpg",
+      images: [
+        "https://cartzilla.madrasthemes.com/electronics/wp-content/uploads/sites/2/2020/03/7.jpg",
+        "https://cdn.builder.io/api/v1/image/assets%2F4c6409e754274ac6a8c3caf8620ed822%2F64c6e6170dfb41c997c833f5332eee03",
+      ],
       rating: 4.9,
       reviews: 189,
       badge: "New",
       category: "Electronics",
       brand: "SmartTech",
       inStock: true,
+      stockCount: 15,
+      estimatedDelivery: "Dec 24-26",
+      description:
+        "Advanced smartwatch with health monitoring, GPS tracking, and 7-day battery life. Features include heart rate monitoring, sleep tracking, water resistance up to 50m, and smart notifications.",
+      features: [
+        "7-day battery life",
+        "Heart rate monitoring",
+        "GPS tracking",
+        "Water resistant (50m)",
+        "Sleep tracking",
+        "Smart notifications",
+        "Fitness tracking",
+        "Voice assistant",
+      ],
+      specifications: {
+        Display: '1.4" AMOLED, 454x454 resolution',
+        Battery: "7 days typical use",
+        Connectivity: "Bluetooth 5.0, WiFi, GPS",
+        Sensors: "Heart rate, SpO2, Accelerometer, Gyroscope",
+        "Water Resistance": "5ATM (50 meters)",
+        Compatibility: "iOS 12+, Android 6+",
+        Storage: "4GB internal",
+        Weight: "52g",
+      },
+      reviewSummary: {
+        totalReviews: 189,
+        averageRating: 4.9,
+        ratingBreakdown: { 5: 155, 4: 25, 3: 7, 2: 1, 1: 1 },
+        topReviews: [
+          {
+            user: "Sarah M.",
+            rating: 5,
+            comment:
+              "Amazing battery life and accurate health tracking. Best smartwatch I've owned!",
+            date: "Dec 15, 2024",
+            verified: true,
+          },
+        ],
+      },
     },
     {
       id: 3,
       name: "Gaming Laptop Ultra",
       price: 1299.99,
       originalPrice: 1599.99,
-      image: "/placeholder.svg",
+      image:
+        "https://cdn.builder.io/api/v1/image/assets%2F4c6409e754274ac6a8c3caf8620ed822%2Fbd44033fd7f048c990dbef1d7f0c23bb",
+      images: [
+        "https://cdn.builder.io/api/v1/image/assets%2F4c6409e754274ac6a8c3caf8620ed822%2Fbd44033fd7f048c990dbef1d7f0c23bb",
+        "https://cdn.builder.io/api/v1/image/assets%2F4c6409e754274ac6a8c3caf8620ed822%2Ff215ae6483b64ba2a66ad39f235b3cd4",
+      ],
       rating: 4.7,
       reviews: 98,
       badge: "Limited",
       category: "Electronics",
       brand: "GameMax",
       inStock: false,
+      stockCount: 0,
+      estimatedDelivery: "Jan 2-5",
+      description:
+        "High-performance gaming laptop with RTX 4080, Intel i7-13th gen, 32GB RAM, and 1TB SSD. Built for the most demanding games and creative work.",
+      features: [
+        "NVIDIA RTX 4080 GPU",
+        "Intel Core i7-13th Gen",
+        "32GB DDR5 RAM",
+        "1TB NVMe SSD",
+        '15.6" 144Hz Display',
+        "RGB Mechanical Keyboard",
+        "Advanced Cooling System",
+        "Wi-Fi 6E & Bluetooth 5.3",
+      ],
+      specifications: {
+        Processor: "Intel Core i7-13700HX",
+        Graphics: "NVIDIA GeForce RTX 4080 8GB",
+        RAM: "32GB DDR5-4800MHz",
+        Storage: "1TB PCIe Gen4 NVMe SSD",
+        Display: '15.6" FHD 144Hz IPS',
+        Keyboard: "RGB Backlit Mechanical",
+        Ports: "USB-C, USB 3.2, HDMI 2.1, Ethernet",
+        Weight: "2.3kg",
+      },
+      reviewSummary: {
+        totalReviews: 98,
+        averageRating: 4.7,
+        ratingBreakdown: { 5: 70, 4: 20, 3: 6, 2: 1, 1: 1 },
+        topReviews: [
+          {
+            user: "Gaming Pro",
+            rating: 5,
+            comment:
+              "Runs every game at max settings flawlessly. The cooling is excellent too.",
+            date: "Dec 5, 2024",
+            verified: true,
+          },
+        ],
+      },
     },
     {
       id: 4,
@@ -100,12 +238,54 @@ export default function Products() {
       originalPrice: 129.99,
       image:
         "https://tse4.mm.bing.net/th/id/OIP.5jUMMFAQCY47WNPwiwqGBQHaFj?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+      images: [
+        "https://tse4.mm.bing.net/th/id/OIP.5jUMMFAQCY47WNPwiwqGBQHaFj?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+      ],
       rating: 4.6,
       reviews: 156,
       badge: "Sale",
       category: "Electronics",
       brand: "VisionTech",
       inStock: true,
+      stockCount: 18,
+      estimatedDelivery: "Dec 20-22",
+      description:
+        "Professional 4K webcam with auto-focus, HDR, and AI-powered background blur. Perfect for streaming, video calls, and content creation.",
+      features: [
+        "4K @ 30fps recording",
+        "Auto-focus technology",
+        "HDR image processing",
+        "AI background blur",
+        "Built-in stereo microphones",
+        "USB-C connectivity",
+        "Privacy shutter",
+        "Universal mount",
+      ],
+      specifications: {
+        Resolution: "4K (3840x2160) @ 30fps",
+        "Field of View": "90° diagonal",
+        Focus: "Auto-focus with face detection",
+        Microphone: "Dual stereo with noise reduction",
+        Connection: "USB-C 3.0",
+        Compatibility: "Windows, Mac, Linux",
+        Mount: 'Standard 1/4" tripod thread',
+        Dimensions: "95 x 30 x 30mm",
+      },
+      reviewSummary: {
+        totalReviews: 156,
+        averageRating: 4.6,
+        ratingBreakdown: { 5: 95, 4: 45, 3: 12, 2: 3, 1: 1 },
+        topReviews: [
+          {
+            user: "Streamer Dave",
+            rating: 5,
+            comment:
+              "Crystal clear 4K quality. The auto-focus works perfectly for streaming.",
+            date: "Dec 10, 2024",
+            verified: true,
+          },
+        ],
+      },
     },
     {
       id: 5,
@@ -114,12 +294,54 @@ export default function Products() {
       originalPrice: 79.99,
       image:
         "https://th.bing.com/th/id/R.dc5f48fc2df53891f919d73016eb00f5?rik=D199iowTaFGUuw&pid=ImgRaw&r=0",
+      images: [
+        "https://th.bing.com/th/id/R.dc5f48fc2df53891f919d73016eb00f5?rik=D199iowTaFGUuw&pid=ImgRaw&r=0",
+      ],
       rating: 4.5,
       reviews: 324,
       badge: "",
       category: "Electronics",
       brand: "TechPro",
       inStock: true,
+      stockCount: 42,
+      estimatedDelivery: "Dec 21-23",
+      description:
+        "Ergonomic wireless mouse with precision tracking, programmable buttons, and 3-month battery life. Ideal for work and gaming.",
+      features: [
+        "Precision optical sensor",
+        "Programmable buttons",
+        "3-month battery life",
+        "Ergonomic design",
+        "2.4GHz wireless",
+        "DPI adjustment",
+        "Silent clicking",
+        "USB receiver storage",
+      ],
+      specifications: {
+        Sensor: "Optical, up to 1600 DPI",
+        Buttons: "6 programmable buttons",
+        Battery: "AA battery, 3 months life",
+        Connection: "2.4GHz wireless receiver",
+        Range: "10 meters",
+        Compatibility: "Windows, Mac, Linux",
+        Weight: "85g (without battery)",
+        Dimensions: "125 x 67 x 40mm",
+      },
+      reviewSummary: {
+        totalReviews: 324,
+        averageRating: 4.5,
+        ratingBreakdown: { 5: 180, 4: 100, 3: 35, 2: 7, 1: 2 },
+        topReviews: [
+          {
+            user: "Office Worker",
+            rating: 5,
+            comment:
+              "Super comfortable for all-day use. Battery really does last months.",
+            date: "Dec 7, 2024",
+            verified: true,
+          },
+        ],
+      },
     },
     {
       id: 6,
@@ -128,12 +350,54 @@ export default function Products() {
       originalPrice: 65.99,
       image:
         "https://tse3.mm.bing.net/th/id/OIP.ymrFwpuQzAqRc3h356uC8AHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+      images: [
+        "https://tse3.mm.bing.net/th/id/OIP.ymrFwpuQzAqRc3h356uC8AHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+      ],
       rating: 4.4,
       reviews: 267,
       badge: "Sale",
       category: "Electronics",
       brand: "ConnectPro",
       inStock: true,
+      stockCount: 30,
+      estimatedDelivery: "Dec 19-21",
+      description:
+        "Compact 7-in-1 USB-C hub with 4K HDMI, USB 3.0 ports, SD card reader, and 100W Power Delivery. Perfect for laptops and tablets.",
+      features: [
+        "7-in-1 connectivity",
+        "4K HDMI output",
+        "100W Power Delivery",
+        "USB 3.0 ports",
+        "SD/microSD reader",
+        "Ethernet port",
+        "Compact aluminum design",
+        "Plug and play",
+      ],
+      specifications: {
+        Ports: "2x USB 3.0, HDMI, USB-C PD, Ethernet, SD/microSD",
+        HDMI: "4K @ 60Hz support",
+        "Power Delivery": "100W USB-C PD passthrough",
+        "Data Transfer": "USB 3.0 up to 5Gbps",
+        Ethernet: "Gigabit Ethernet (1000Mbps)",
+        Material: "Aluminum alloy housing",
+        Compatibility: "USB-C devices (MacBook, iPad, PC)",
+        Dimensions: "120 x 45 x 12mm",
+      },
+      reviewSummary: {
+        totalReviews: 267,
+        averageRating: 4.4,
+        ratingBreakdown: { 5: 140, 4: 85, 3: 30, 2: 8, 1: 4 },
+        topReviews: [
+          {
+            user: "MacBook User",
+            rating: 4,
+            comment:
+              "Great hub, works perfectly with my MacBook. The 4K output is crisp.",
+            date: "Dec 9, 2024",
+            verified: true,
+          },
+        ],
+      },
     },
   ];
 
