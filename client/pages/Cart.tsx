@@ -408,6 +408,356 @@ export default function Cart() {
     setAppliedCoupon(null);
   };
 
+  const ProductDetailModal = ({ item }: { item: CartItem }) => {
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const images = item.images || [item.image];
+
+    const nextImage = () => {
+      setCurrentImageIndex((prev) => (prev + 1) % images.length);
+    };
+
+    const prevImage = () => {
+      setCurrentImageIndex(
+        (prev) => (prev - 1 + images.length) % images.length,
+      );
+    };
+
+    return (
+      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+        <DialogHeader>
+          <DialogTitle className="flex items-center gap-3">
+            <Package className="w-6 h-6" />
+            {item.name}
+          </DialogTitle>
+        </DialogHeader>
+
+        <div className="grid md:grid-cols-2 gap-6">
+          {/* Product Images */}
+          <div className="space-y-4">
+            <div className="relative">
+              <img
+                src={images[currentImageIndex]}
+                alt={item.name}
+                className="w-full h-80 object-cover rounded-lg"
+              />
+              {images.length > 1 && (
+                <>
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-background/80"
+                    onClick={prevImage}
+                  >
+                    <ChevronLeft className="w-4 h-4" />
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-background/80"
+                    onClick={nextImage}
+                  >
+                    <ChevronRight className="w-4 h-4" />
+                  </Button>
+                </>
+              )}
+              <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex gap-1">
+                {images.map((_, index) => (
+                  <button
+                    key={index}
+                    className={cn(
+                      "w-2 h-2 rounded-full",
+                      index === currentImageIndex
+                        ? "bg-primary"
+                        : "bg-background/60",
+                    )}
+                    onClick={() => setCurrentImageIndex(index)}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* Thumbnail Gallery */}
+            {images.length > 1 && (
+              <div className="flex gap-2 overflow-x-auto">
+                {images.map((img, index) => (
+                  <button
+                    key={index}
+                    className={cn(
+                      "flex-shrink-0 w-16 h-16 rounded border-2 overflow-hidden",
+                      index === currentImageIndex
+                        ? "border-primary"
+                        : "border-muted",
+                    )}
+                    onClick={() => setCurrentImageIndex(index)}
+                  >
+                    <img
+                      src={img}
+                      alt=""
+                      className="w-full h-full object-cover"
+                    />
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Product Details */}
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <div className="flex items-center gap-2">
+                <Badge variant="outline">{item.brand}</Badge>
+                <Badge variant="secondary">{item.category}</Badge>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <div className="flex">
+                  {[...Array(5)].map((_, i) => (
+                    <Star
+                      key={i}
+                      className={`h-4 w-4 ${
+                        i < Math.floor(item.rating)
+                          ? "text-yellow-400 fill-current"
+                          : "text-gray-300"
+                      }`}
+                    />
+                  ))}
+                </div>
+                <span className="text-sm text-muted-foreground">
+                  {item.rating} ({item.reviews} reviews)
+                </span>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <span className="text-2xl font-bold">${item.price}</span>
+                {item.originalPrice && (
+                  <>
+                    <span className="text-lg text-muted-foreground line-through">
+                      ${item.originalPrice}
+                    </span>
+                    <Badge className="bg-destructive">
+                      {Math.round(
+                        ((item.originalPrice - item.price) /
+                          item.originalPrice) *
+                          100,
+                      )}
+                      % OFF
+                    </Badge>
+                  </>
+                )}
+              </div>
+
+              {item.variant && (
+                <div className="space-y-1">
+                  {item.variant.color && (
+                    <div className="text-sm">
+                      <span className="font-medium">Color:</span>{" "}
+                      {item.variant.color}
+                    </div>
+                  )}
+                  {item.variant.size && (
+                    <div className="text-sm">
+                      <span className="font-medium">Size:</span>{" "}
+                      {item.variant.size}
+                    </div>
+                  )}
+                  {item.variant.model && (
+                    <div className="text-sm">
+                      <span className="font-medium">Model:</span>{" "}
+                      {item.variant.model}
+                    </div>
+                  )}
+                </div>
+              )}
+
+              <div className="flex items-center gap-2">
+                {item.inStock ? (
+                  <Badge className="bg-success">
+                    <CheckCircle className="w-3 h-3 mr-1" />
+                    In Stock ({item.stockCount} available)
+                  </Badge>
+                ) : (
+                  <Badge variant="destructive">
+                    <AlertTriangle className="w-3 h-3 mr-1" />
+                    Out of Stock
+                  </Badge>
+                )}
+              </div>
+
+              <div className="flex items-center gap-2 text-sm text-success">
+                <Truck className="w-4 h-4" />
+                <span>Estimated delivery: {item.estimatedDelivery}</span>
+              </div>
+            </div>
+
+            <Separator />
+
+            <Tabs defaultValue="description" className="w-full">
+              <TabsList className="grid w-full grid-cols-3">
+                <TabsTrigger value="description">Description</TabsTrigger>
+                <TabsTrigger value="specs">Specifications</TabsTrigger>
+                <TabsTrigger value="reviews">Reviews</TabsTrigger>
+              </TabsList>
+
+              <TabsContent value="description" className="space-y-4">
+                <div>
+                  <h4 className="font-semibold mb-2">About this product</h4>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {item.description}
+                  </p>
+                </div>
+
+                {item.features && (
+                  <div>
+                    <h4 className="font-semibold mb-2 flex items-center gap-2">
+                      <Zap className="w-4 h-4" />
+                      Key Features
+                    </h4>
+                    <ul className="space-y-1">
+                      {item.features.map((feature, index) => (
+                        <li
+                          key={index}
+                          className="text-sm flex items-center gap-2"
+                        >
+                          <CheckCircle className="w-3 h-3 text-success flex-shrink-0" />
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </TabsContent>
+
+              <TabsContent value="specs" className="space-y-2">
+                {item.specifications && (
+                  <div className="space-y-2">
+                    {Object.entries(item.specifications).map(([key, value]) => (
+                      <div
+                        key={key}
+                        className="flex justify-between py-2 border-b border-muted"
+                      >
+                        <span className="font-medium text-sm">{key}</span>
+                        <span className="text-sm text-muted-foreground text-right">
+                          {value}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </TabsContent>
+
+              <TabsContent value="reviews" className="space-y-4">
+                {item.reviewSummary && (
+                  <>
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-4">
+                        <div className="text-center">
+                          <div className="text-3xl font-bold">
+                            {item.reviewSummary.averageRating}
+                          </div>
+                          <div className="flex">
+                            {[...Array(5)].map((_, i) => (
+                              <Star
+                                key={i}
+                                className={`h-4 w-4 ${
+                                  i <
+                                  Math.floor(item.reviewSummary!.averageRating)
+                                    ? "text-yellow-400 fill-current"
+                                    : "text-gray-300"
+                                }`}
+                              />
+                            ))}
+                          </div>
+                          <div className="text-sm text-muted-foreground">
+                            {item.reviewSummary.totalReviews} reviews
+                          </div>
+                        </div>
+
+                        <div className="flex-1 space-y-1">
+                          {[5, 4, 3, 2, 1].map((rating) => (
+                            <div
+                              key={rating}
+                              className="flex items-center gap-2"
+                            >
+                              <span className="text-sm w-3">{rating}</span>
+                              <Star className="w-3 h-3 text-yellow-400 fill-current" />
+                              <div className="flex-1 bg-muted rounded-full h-2">
+                                <div
+                                  className="bg-yellow-400 h-2 rounded-full"
+                                  style={{
+                                    width: `${
+                                      ((item.reviewSummary.ratingBreakdown[
+                                        rating
+                                      ] || 0) /
+                                        item.reviewSummary.totalReviews) *
+                                      100
+                                    }%`,
+                                  }}
+                                />
+                              </div>
+                              <span className="text-sm w-8 text-right">
+                                {item.reviewSummary.ratingBreakdown[rating] ||
+                                  0}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    <Separator />
+
+                    <div className="space-y-4">
+                      <h4 className="font-semibold flex items-center gap-2">
+                        <Award className="w-4 h-4" />
+                        Top Reviews
+                      </h4>
+                      {item.reviewSummary.topReviews.map((review, index) => (
+                        <div
+                          key={index}
+                          className="space-y-2 p-3 border rounded-lg"
+                        >
+                          <div className="flex items-center gap-2">
+                            <span className="font-medium text-sm">
+                              {review.user}
+                            </span>
+                            {review.verified && (
+                              <Badge variant="outline" className="text-xs">
+                                <CheckCircle className="w-3 h-3 mr-1" />
+                                Verified
+                              </Badge>
+                            )}
+                            <span className="text-xs text-muted-foreground ml-auto">
+                              {review.date}
+                            </span>
+                          </div>
+                          <div className="flex">
+                            {[...Array(5)].map((_, i) => (
+                              <Star
+                                key={i}
+                                className={`h-3 w-3 ${
+                                  i < review.rating
+                                    ? "text-yellow-400 fill-current"
+                                    : "text-gray-300"
+                                }`}
+                              />
+                            ))}
+                          </div>
+                          <p className="text-sm text-muted-foreground">
+                            {review.comment}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </>
+                )}
+              </TabsContent>
+            </Tabs>
+          </div>
+        </div>
+      </DialogContent>
+    );
+  };
+
   const CartItemCard = ({
     item,
     showMoveToCart = false,
