@@ -981,82 +981,89 @@ export default function Products() {
             {viewMode === "grid" ? (
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {filteredProducts.map((product) => (
-                  <Card
-                    key={product.id}
-                    className="group cursor-pointer hover:shadow-lg transition-all duration-300"
-                  >
-                    <CardContent className="p-0">
-                      <div className="relative">
-                        <img
-                          src={product.image}
-                          alt={product.name}
-                          className="w-full h-48 object-cover rounded-t-lg"
-                        />
-                        {product.badge && (
-                          <Badge className="absolute top-3 left-3">
-                            {product.badge}
-                          </Badge>
-                        )}
-                        {!product.inStock && (
-                          <div className="absolute inset-0 bg-black/50 rounded-t-lg flex items-center justify-center">
-                            <Badge variant="secondary">Out of Stock</Badge>
-                          </div>
-                        )}
-                        <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                          <Button
-                            size="icon"
-                            variant="secondary"
-                            className="h-8 w-8"
-                          >
-                            <Heart className="h-4 w-4" />
-                          </Button>
-                        </div>
-                      </div>
-                      <div className="p-4 space-y-3">
-                        <div className="flex items-center gap-1">
-                          <div className="flex">
-                            {[...Array(5)].map((_, i) => (
-                              <Star
-                                key={i}
-                                className={`h-4 w-4 ${
-                                  i < Math.floor(product.rating)
-                                    ? "text-yellow-400 fill-current"
-                                    : "text-gray-300"
-                                }`}
-                              />
-                            ))}
-                          </div>
-                          <span className="text-sm text-muted-foreground">
-                            ({product.reviews})
-                          </span>
-                        </div>
-                        <h3 className="font-semibold line-clamp-2">
-                          {product.name}
-                        </h3>
-                        <div className="flex items-center justify-between">
-                          <div>
-                            <div className="flex items-center gap-2">
-                              <span className="text-lg font-bold">
-                                ${product.price}
-                              </span>
-                              {product.originalPrice !== product.price && (
-                                <span className="text-sm text-muted-foreground line-through">
-                                  ${product.originalPrice}
-                                </span>
-                              )}
+                  <Dialog key={product.id}>
+                    <DialogTrigger asChild>
+                      <Card className="group cursor-pointer hover:shadow-lg transition-all duration-300">
+                        <CardContent className="p-0">
+                          <div className="relative">
+                            <img
+                              src={product.image}
+                              alt={product.name}
+                              className="w-full h-48 object-cover rounded-t-lg transition-transform group-hover:scale-105"
+                            />
+                            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 rounded-t-lg flex items-center justify-center transition-colors">
+                              <Eye className="w-5 h-5 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
+                            </div>
+                            {product.badge && (
+                              <Badge className="absolute top-3 left-3">
+                                {product.badge}
+                              </Badge>
+                            )}
+                            {!product.inStock && (
+                              <div className="absolute inset-0 bg-black/50 rounded-t-lg flex items-center justify-center">
+                                <Badge variant="secondary">Out of Stock</Badge>
+                              </div>
+                            )}
+                            <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                              <Button
+                                size="icon"
+                                variant="secondary"
+                                className="h-8 w-8"
+                                onClick={(e) => e.stopPropagation()}
+                              >
+                                <Heart className="h-4 w-4" />
+                              </Button>
                             </div>
                           </div>
-                          <Button
-                            size="sm"
-                            disabled={!product.inStock}
-                            className="opacity-0 group-hover:opacity-100 transition-opacity"
-                          >
-                            <ShoppingCart className="h-4 w-4" />
-                          </Button>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
+                          <div className="p-4 space-y-3">
+                            <div className="flex items-center gap-1">
+                              <div className="flex">
+                                {[...Array(5)].map((_, i) => (
+                                  <Star
+                                    key={i}
+                                    className={`h-4 w-4 ${
+                                      i < Math.floor(product.rating)
+                                        ? "text-yellow-400 fill-current"
+                                        : "text-gray-300"
+                                    }`}
+                                  />
+                                ))}
+                              </div>
+                              <span className="text-sm text-muted-foreground">
+                                ({product.reviews})
+                              </span>
+                            </div>
+                            <h3 className="font-semibold line-clamp-2 hover:text-primary transition-colors">
+                              {product.name}
+                            </h3>
+                            <div className="flex items-center justify-between">
+                              <div>
+                                <div className="flex items-center gap-2">
+                                  <span className="text-lg font-bold">
+                                    ${product.price}
+                                  </span>
+                                  {product.originalPrice !== product.price && (
+                                    <span className="text-sm text-muted-foreground line-through">
+                                      ${product.originalPrice}
+                                    </span>
+                                  )}
+                                </div>
+                              </div>
+                              <Button
+                                size="sm"
+                                disabled={!product.inStock}
+                                className="opacity-0 group-hover:opacity-100 transition-opacity"
+                                onClick={(e) => e.stopPropagation()}
+                              >
+                                <ShoppingCart className="h-4 w-4" />
+                              </Button>
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </DialogTrigger>
+                    <ProductDetailModal product={product} />
+                  </Dialog>
                 ))}
               </div>
             ) : (
