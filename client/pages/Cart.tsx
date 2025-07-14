@@ -768,25 +768,40 @@ export default function Cart() {
     <Card className="mb-4">
       <CardContent className="p-4">
         <div className="flex gap-4">
-          <div className="relative w-24 h-24 flex-shrink-0">
-            <img
-              src={item.image}
-              alt={item.name}
-              className="w-full h-full object-cover rounded-lg"
-            />
-            {!item.inStock && (
-              <div className="absolute inset-0 bg-black/50 rounded-lg flex items-center justify-center">
-                <Badge variant="destructive" className="text-xs">
-                  Out of Stock
-                </Badge>
+          <Dialog>
+            <DialogTrigger asChild>
+              <div className="relative w-24 h-24 flex-shrink-0 cursor-pointer group">
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  className="w-full h-full object-cover rounded-lg transition-transform group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 rounded-lg flex items-center justify-center transition-colors">
+                  <Eye className="w-5 h-5 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
+                {!item.inStock && (
+                  <div className="absolute inset-0 bg-black/50 rounded-lg flex items-center justify-center">
+                    <Badge variant="destructive" className="text-xs">
+                      Out of Stock
+                    </Badge>
+                  </div>
+                )}
               </div>
-            )}
-          </div>
+            </DialogTrigger>
+            <ProductDetailModal item={item} />
+          </Dialog>
 
           <div className="flex-1 space-y-2">
             <div className="flex justify-between items-start">
               <div>
-                <h3 className="font-semibold text-lg">{item.name}</h3>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <h3 className="font-semibold text-lg cursor-pointer hover:text-primary transition-colors">
+                      {item.name}
+                    </h3>
+                  </DialogTrigger>
+                  <ProductDetailModal item={item} />
+                </Dialog>
                 <div className="flex items-center gap-1 text-sm text-muted-foreground">
                   <div className="flex">
                     {[...Array(5)].map((_, i) => (
