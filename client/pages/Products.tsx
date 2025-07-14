@@ -39,7 +39,8 @@ export default function Products() {
       name: "Wireless Bluetooth Headphones",
       price: 199.99,
       originalPrice: 249.99,
-      image: "/placeholder.svg",
+      image:
+        "https://cdn.builder.io/api/v1/image/assets%2F4c6409e754274ac6a8c3caf8620ed822%2F38c5e4ef6f8545daa1572c07ead7e14f",
       rating: 4.8,
       reviews: 245,
       badge: "Best Seller",
@@ -52,7 +53,8 @@ export default function Products() {
       name: "Smart Watch Series 5",
       price: 299.99,
       originalPrice: 399.99,
-      image: "/placeholder.svg",
+      image:
+        "https://cartzilla.madrasthemes.com/electronics/wp-content/uploads/sites/2/2020/03/7.jpg",
       rating: 4.9,
       reviews: 189,
       badge: "New",
@@ -78,7 +80,8 @@ export default function Products() {
       name: "4K Webcam Pro",
       price: 89.99,
       originalPrice: 129.99,
-      image: "/placeholder.svg",
+      image:
+        "https://tse4.mm.bing.net/th/id/OIP.5jUMMFAQCY47WNPwiwqGBQHaFj?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
       rating: 4.6,
       reviews: 156,
       badge: "Sale",
@@ -91,7 +94,8 @@ export default function Products() {
       name: "Wireless Mouse Precision",
       price: 59.99,
       originalPrice: 79.99,
-      image: "/placeholder.svg",
+      image:
+        "https://th.bing.com/th/id/R.dc5f48fc2df53891f919d73016eb00f5?rik=D199iowTaFGUuw&pid=ImgRaw&r=0",
       rating: 4.5,
       reviews: 324,
       badge: "",
@@ -104,7 +108,8 @@ export default function Products() {
       name: "USB-C Hub Multi-Port",
       price: 45.99,
       originalPrice: 65.99,
-      image: "/placeholder.svg",
+      image:
+        "https://tse3.mm.bing.net/th/id/OIP.ymrFwpuQzAqRc3h356uC8AHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
       rating: 4.4,
       reviews: 267,
       badge: "Sale",
