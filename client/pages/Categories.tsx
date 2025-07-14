@@ -66,7 +66,7 @@ export default function Categories() {
       name: "Electronics",
       icon: Smartphone,
       image:
-        "https://cdn.builder.io/api/v1/image/assets%2F4c6409e754274ac6a8c3caf8620ed822%2F64c6e6170dfb41c997c833f5332eee03",
+        "https://images.unsplash.com/photo-1498049794561-7780e7231661?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
       productCount: 2847,
       color: "from-blue-500 to-cyan-500",
       dealText: "Up to 60% Off",
@@ -99,7 +99,7 @@ export default function Categories() {
       name: "Fashion",
       icon: Shirt,
       image:
-        "https://cdn.builder.io/api/v1/image/assets%2F4c6409e754274ac6a8c3caf8620ed822%2F37580571b6874b36bc60fff960f1e845",
+        "https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
       productCount: 5239,
       color: "from-pink-500 to-purple-500",
       dealText: "New Season Sale",
@@ -127,7 +127,7 @@ export default function Categories() {
       name: "Home & Kitchen",
       icon: Home,
       image:
-        "https://cdn.builder.io/api/v1/image/assets%2F4c6409e754274ac6a8c3caf8620ed822%2Fb86cd9b4d4b8490e8e680289c39fef16",
+        "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
       productCount: 1876,
       color: "from-green-500 to-emerald-500",
       dealText: "Home Makeover",
@@ -155,7 +155,7 @@ export default function Categories() {
       name: "Sports & Outdoors",
       icon: Dumbbell,
       image:
-        "https://cdn.builder.io/api/v1/image/assets%2F4c6409e754274ac6a8c3caf8620ed822%2Ff215ae6483b64ba2a66ad39f235b3cd4",
+        "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
       productCount: 967,
       color: "from-orange-500 to-red-500",
       dealText: "Fitness Goals",
@@ -183,7 +183,7 @@ export default function Categories() {
       name: "Books & Media",
       icon: Book,
       image:
-        "https://cdn.builder.io/api/v1/image/assets%2F4c6409e754274ac6a8c3caf8620ed822%2F38c5e4ef6f8545daa1572c07ead7e14f",
+        "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
       productCount: 1245,
       color: "from-amber-500 to-yellow-500",
       dealText: "Knowledge Sale",
@@ -206,7 +206,7 @@ export default function Categories() {
       name: "Beauty & Health",
       icon: Sparkles,
       image:
-        "https://cdn.builder.io/api/v1/image/assets%2F4c6409e754274ac6a8c3caf8620ed822%2F44d3d9f05b0140bdbbb6589c07d6d85d",
+        "https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
       productCount: 834,
       color: "from-rose-500 to-pink-500",
       dealText: "Glow Up",
