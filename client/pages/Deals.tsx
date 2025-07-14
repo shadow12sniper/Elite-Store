@@ -634,6 +634,30 @@ export default function Deals() {
           </TabsContent>
         </Tabs>
       </div>
+
+      {/* Floating Quick Access Button (Mobile) */}
+      <div className="fixed bottom-6 right-6 md:hidden z-50">
+        <Button
+          size="lg"
+          className="h-14 w-14 rounded-full shadow-lg bg-destructive hover:bg-destructive/90 animate-bounce"
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        >
+          <Flame className="h-6 w-6" />
+        </Button>
+      </div>
+
+      {/* Sticky Deal Notification */}
+      <div className="fixed bottom-0 left-0 right-0 bg-gradient-to-r from-success to-success/80 text-success-foreground p-4 md:hidden z-40">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Truck className="w-4 h-4" />
+            <span className="text-sm font-medium">Free shipping $50+</span>
+          </div>
+          <Button size="sm" variant="secondary" className="text-xs">
+            Shop Now
+          </Button>
+        </div>
+      </div>
     </div>
   );
 }
