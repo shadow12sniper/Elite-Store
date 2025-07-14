@@ -64,6 +64,7 @@ interface CartItem {
   price: number;
   originalPrice?: number;
   image: string;
+  images?: string[];
   quantity: number;
   variant?: {
     size?: string;
@@ -75,6 +76,23 @@ interface CartItem {
   estimatedDelivery: string;
   rating: number;
   reviews: number;
+  description?: string;
+  features?: string[];
+  specifications?: { [key: string]: string };
+  category: string;
+  brand: string;
+  reviewSummary?: {
+    totalReviews: number;
+    averageRating: number;
+    ratingBreakdown: { [key: number]: number };
+    topReviews: Array<{
+      user: string;
+      rating: number;
+      comment: string;
+      date: string;
+      verified: boolean;
+    }>;
+  };
 }
 
 export default function Cart() {
