@@ -238,7 +238,7 @@ export default function Categories() {
       price: 999,
       originalPrice: 1199,
       image:
-        "https://cdn.builder.io/api/v1/image/assets%2F4c6409e754274ac6a8c3caf8620ed822%2F64c6e6170dfb41c997c833f5332eee03",
+        "https://images.unsplash.com/photo-1592286544455-42e0e09ed0e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
       category: "Electronics",
       rating: 4.9,
       badge: "Best Seller",
@@ -249,7 +249,7 @@ export default function Categories() {
       price: 129,
       originalPrice: 179,
       image:
-        "https://cdn.builder.io/api/v1/image/assets%2F4c6409e754274ac6a8c3caf8620ed822%2F37580571b6874b36bc60fff960f1e845",
+        "https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
       category: "Fashion",
       rating: 4.8,
       badge: "Trending",
@@ -260,7 +260,7 @@ export default function Categories() {
       price: 199,
       originalPrice: 299,
       image:
-        "https://cdn.builder.io/api/v1/image/assets%2F4c6409e754274ac6a8c3caf8620ed822%2Fb86cd9b4d4b8490e8e680289c39fef16",
+        "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
       category: "Home",
       rating: 4.7,
       badge: "Deal",
