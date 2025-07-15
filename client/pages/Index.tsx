@@ -11,6 +11,9 @@ import {
   Zap,
   Heart,
   ShoppingCart,
+  Clock,
+  Flame,
+  Target,
 } from "lucide-react";
 
 export default function Index() {
