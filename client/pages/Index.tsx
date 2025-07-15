@@ -185,6 +185,261 @@ export default function Index() {
         </div>
       </section>
 
+      {/* Deals Preview */}
+      <section className="py-20 bg-gradient-to-r from-destructive/10 via-destructive/5 to-destructive/10">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <div className="flex justify-center items-center gap-2 mb-4">
+              <Flame className="w-8 h-8 text-destructive animate-pulse" />
+              <h2 className="text-3xl md:text-4xl font-bold">Hot Deals</h2>
+              <Flame className="w-8 h-8 text-destructive animate-pulse" />
+            </div>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-6">
+              Limited time offers with incredible savings
+            </p>
+            <div className="flex justify-center items-center gap-4 text-lg font-mono mb-8">
+              <div className="bg-destructive text-destructive-foreground px-4 py-2 rounded-lg shadow-lg">
+                <span className="block text-xs text-destructive-foreground/80">
+                  Hours
+                </span>
+                12
+              </div>
+              <span className="text-destructive animate-pulse">:</span>
+              <div className="bg-destructive text-destructive-foreground px-4 py-2 rounded-lg shadow-lg">
+                <span className="block text-xs text-destructive-foreground/80">
+                  Min
+                </span>
+                34
+              </div>
+              <span className="text-destructive animate-pulse">:</span>
+              <div className="bg-destructive text-destructive-foreground px-4 py-2 rounded-lg shadow-lg">
+                <span className="block text-xs text-destructive-foreground/80">
+                  Sec
+                </span>
+                56
+              </div>
+            </div>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Deal 1 - Smart Watch */}
+            <Card className="group cursor-pointer hover:shadow-2xl transition-all duration-300 overflow-hidden border-2 border-destructive/20">
+              <CardContent className="p-0">
+                <div className="relative">
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets%2F4c6409e754274ac6a8c3caf8620ed822%2F64c6e6170dfb41c997c833f5332eee03"
+                    alt="Smart Watch Pro"
+                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute top-3 left-3 flex flex-col gap-2">
+                    <Badge className="bg-destructive font-bold animate-pulse">
+                      <Flame className="w-3 h-3 mr-1" />
+                      Flash Sale
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="text-destructive font-bold"
+                    >
+                      50% OFF
+                    </Badge>
+                  </div>
+                  <div className="absolute bottom-3 left-3 right-3">
+                    <Badge
+                      variant="destructive"
+                      className="w-full justify-center animate-pulse"
+                    >
+                      <Clock className="w-3 h-3 mr-1" />
+                      Ends in 12h 34m
+                    </Badge>
+                  </div>
+                </div>
+                <div className="p-4 space-y-3">
+                  <h3 className="font-semibold text-lg">
+                    Smart Watch Pro Series
+                  </h3>
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2">
+                      <span className="text-2xl font-bold text-destructive">
+                        $149.99
+                      </span>
+                      <span className="text-lg text-muted-foreground line-through">
+                        $299.99
+                      </span>
+                    </div>
+                    <div className="text-sm text-success font-medium">
+                      You save $150.00
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <div className="flex">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className={`h-4 w-4 ${
+                            i < 4
+                              ? "text-yellow-400 fill-current"
+                              : "text-gray-300"
+                          }`}
+                        />
+                      ))}
+                    </div>
+                    <span className="text-sm text-muted-foreground">(245)</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Deal 2 - Wireless Headphones */}
+            <Card className="group cursor-pointer hover:shadow-2xl transition-all duration-300 overflow-hidden border-2 border-destructive/20">
+              <CardContent className="p-0">
+                <div className="relative">
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets%2F4c6409e754274ac6a8c3caf8620ed822%2F44d3d9f05b0140bdbbb6589c07d6d85d"
+                    alt="Wireless Headphones"
+                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute top-3 left-3 flex flex-col gap-2">
+                    <Badge className="bg-warning font-bold">
+                      <Target className="w-3 h-3 mr-1" />
+                      Limited
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="text-destructive font-bold"
+                    >
+                      50% OFF
+                    </Badge>
+                  </div>
+                  <div className="absolute bottom-3 left-3 right-3">
+                    <Badge
+                      variant="destructive"
+                      className="w-full justify-center"
+                    >
+                      <Flame className="w-3 h-3 mr-1" />
+                      Only 8 left!
+                    </Badge>
+                  </div>
+                </div>
+                <div className="p-4 space-y-3">
+                  <h3 className="font-semibold text-lg">
+                    Wireless Headphones Pro
+                  </h3>
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2">
+                      <span className="text-2xl font-bold text-destructive">
+                        $99.99
+                      </span>
+                      <span className="text-lg text-muted-foreground line-through">
+                        $199.99
+                      </span>
+                    </div>
+                    <div className="text-sm text-success font-medium">
+                      You save $100.00
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <div className="flex">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className={`h-4 w-4 ${
+                            i < 4
+                              ? "text-yellow-400 fill-current"
+                              : "text-gray-300"
+                          }`}
+                        />
+                      ))}
+                    </div>
+                    <span className="text-sm text-muted-foreground">(189)</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Deal 3 - Gaming Laptop */}
+            <Card className="group cursor-pointer hover:shadow-2xl transition-all duration-300 overflow-hidden border-2 border-destructive/20">
+              <CardContent className="p-0">
+                <div className="relative">
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets%2F4c6409e754274ac6a8c3caf8620ed822%2Fbd44033fd7f048c990dbef1d7f0c23bb"
+                    alt="Gaming Laptop"
+                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute top-3 left-3 flex flex-col gap-2">
+                    <Badge className="bg-info font-bold">
+                      <Zap className="w-3 h-3 mr-1" />
+                      Combo Deal
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="text-destructive font-bold"
+                    >
+                      31% OFF
+                    </Badge>
+                  </div>
+                  <div className="absolute bottom-3 left-3 right-3">
+                    <Badge
+                      variant="destructive"
+                      className="w-full justify-center"
+                    >
+                      <Clock className="w-3 h-3 mr-1" />
+                      Ends in 1d 12h
+                    </Badge>
+                  </div>
+                </div>
+                <div className="p-4 space-y-3">
+                  <h3 className="font-semibold text-lg">
+                    Gaming Laptop Bundle
+                  </h3>
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2">
+                      <span className="text-2xl font-bold text-destructive">
+                        $899.99
+                      </span>
+                      <span className="text-lg text-muted-foreground line-through">
+                        $1299.99
+                      </span>
+                    </div>
+                    <div className="text-sm text-success font-medium">
+                      You save $400.00
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <div className="flex">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className={`h-4 w-4 ${
+                            i < 4
+                              ? "text-yellow-400 fill-current"
+                              : "text-gray-300"
+                          }`}
+                        />
+                      ))}
+                    </div>
+                    <span className="text-sm text-muted-foreground">(98)</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="text-center mt-12">
+            <Button
+              size="lg"
+              className="bg-destructive hover:bg-destructive/90 text-lg px-8 py-6"
+              asChild
+            >
+              <Link to="/deals">
+                <Flame className="w-5 h-5 mr-2" />
+                View All Hot Deals
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
       {/* Featured Products */}
       <section className="py-20">
         <div className="container mx-auto px-4">
