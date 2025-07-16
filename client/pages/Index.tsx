@@ -505,8 +505,15 @@ export default function Index() {
                         size="icon"
                         variant="secondary"
                         className="h-8 w-8"
+                        onClick={() => handleToggleFavorite(product)}
                       >
-                        <Heart className="h-4 w-4" />
+                        <Heart
+                          className={`h-4 w-4 ${
+                            isFavorite(product.id)
+                              ? "fill-current text-red-500"
+                              : ""
+                          }`}
+                        />
                       </Button>
                     </div>
                   </div>
@@ -545,6 +552,7 @@ export default function Index() {
                       <Button
                         size="sm"
                         className="opacity-0 group-hover:opacity-100 transition-opacity"
+                        onClick={() => handleAddToCart(product)}
                       >
                         <ShoppingCart className="h-4 w-4" />
                       </Button>
