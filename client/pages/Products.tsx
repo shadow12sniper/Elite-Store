@@ -1389,12 +1389,25 @@ export default function Products() {
 
             {/* Action Buttons */}
             <div className="flex gap-2">
-              <Button className="flex-1">
+              <Button
+                className="flex-1"
+                onClick={() => handleAddToCart(product)}
+                disabled={!product.inStock}
+              >
                 <ShoppingCart className="w-4 h-4 mr-2" />
-                Add to Cart
+                {isInCart(product.id) ? "Added to Cart" : "Add to Cart"}
               </Button>
-              <Button variant="outline" size="icon">
-                <Heart className="w-4 w-4" />
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={() => handleToggleFavorite(product)}
+              >
+                <Heart
+                  className={cn(
+                    "w-4 h-4",
+                    isFavorite(product.id) ? "fill-current text-red-500" : "",
+                  )}
+                />
               </Button>
             </div>
           </div>
