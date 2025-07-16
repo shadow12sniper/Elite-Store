@@ -14,13 +14,17 @@ import {
   Heart,
   ShoppingCart,
   Clock,
-  Flame,
-  Target,
-  ChevronLeft,
-  ChevronRight,
-  Percent,
+  Smartphone,
+  Laptop,
+  Home,
+  Shirt,
+  Baby,
+  Gamepad2,
+  Car,
   Gift,
-  ShoppingBag,
+  ChevronRight,
+  Package,
+  RotateCcw,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState, useEffect } from "react";
@@ -28,101 +32,154 @@ import { useState, useEffect } from "react";
 export default function Index() {
   const { addToCart, isInCart } = useCart();
   const { toggleFavorite, isFavorite } = useFavorites();
-  const [currentDealIndex, setCurrentDealIndex] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
-  const dealsCarousel = [
+  const categories = [
+    { name: "Appliances", icon: Home, link: "/categories/appliances" },
+    { name: "Phones & Tablets", icon: Smartphone, link: "/categories/phones" },
+    { name: "Health & Beauty", icon: Heart, link: "/categories/beauty" },
+    { name: "Home & Office", icon: Home, link: "/categories/home" },
+    { name: "Electronics", icon: Laptop, link: "/categories/electronics" },
+    { name: "Fashion", icon: Shirt, link: "/categories/fashion" },
+    { name: "Computing", icon: Laptop, link: "/categories/computing" },
+    { name: "Baby Products", icon: Baby, link: "/categories/baby" },
+    { name: "Gaming", icon: Gamepad2, link: "/categories/gaming" },
+    { name: "Sporting Goods", icon: Car, link: "/categories/sports" },
+  ];
+
+  const heroSlides = [
     {
       id: 1,
-      title: "Flash Sale Alert!",
-      subtitle: "Up to 70% Off Electronics",
-      description:
-        "Limited time offer on premium headphones, smartwatches, and more tech essentials.",
-      image:
-        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&h=400&fit=crop",
-      badge: "70% OFF",
-      badgeColor: "bg-red-500",
-      bgGradient: "from-red-500/20 to-pink-500/20",
-      dealUrl: "/deals?category=electronics",
-      timeLeft: "2:45:30",
-      icon: Zap,
-    },
-    {
-      id: 2,
-      title: "Weekend Special",
-      subtitle: "Buy 2 Get 1 Free Fashion",
-      description:
-        "Mix and match your favorite clothing items. Third item automatically discounted.",
-      image:
-        "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=400&fit=crop",
-      badge: "B2G1 FREE",
-      badgeColor: "bg-purple-500",
-      bgGradient: "from-purple-500/20 to-blue-500/20",
-      dealUrl: "/deals?category=fashion",
-      timeLeft: "1:12:15",
-      icon: ShoppingBag,
-    },
-    {
-      id: 3,
-      title: "New Customer Bonus",
-      subtitle: "25% Off First Order",
-      description:
-        "Welcome bonus for new shoppers. Use code WELCOME25 at checkout for instant savings.",
-      image:
-        "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=600&h=400&fit=crop",
-      badge: "25% OFF",
-      badgeColor: "bg-green-500",
-      bgGradient: "from-green-500/20 to-emerald-500/20",
-      dealUrl: "/deals?type=new-customer",
-      timeLeft: "23:55:42",
-      icon: Gift,
-    },
-    {
-      id: 4,
-      title: "Clearance Blowout",
-      subtitle: "Up to 80% Off Home Goods",
-      description:
-        "Last chance to grab premium home and kitchen items at unbeatable prices.",
-      image:
-        "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&h=400&fit=crop",
-      badge: "80% OFF",
-      badgeColor: "bg-orange-500",
-      bgGradient: "from-orange-500/20 to-yellow-500/20",
-      dealUrl: "/deals?category=home",
-      timeLeft: "4:33:18",
-      icon: Percent,
+      title: "Aweeof the Month",
+      subtitle: "July",
+      mainProduct: {
+        name: "Dr Teals Body Wash",
+        price: "₦7,500",
+        originalPrice: "₦10,500",
+        image:
+          "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=300&h=300&fit=crop",
+      },
+      sideProduct: {
+        name: "Adidas Sneakers",
+        price: "₦31,990",
+        tag: "EXCLUSIVE",
+        image:
+          "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=300&h=300&fit=crop",
+      },
+      bottomProduct: {
+        name: "Pop Socket",
+        price: "₦109,999",
+        originalPrice: "₦140,335",
+        image:
+          "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=300&h=300&fit=crop",
+      },
     },
   ];
 
-  // Auto-rotate deals every 5 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentDealIndex((prev) => (prev + 1) % dealsCarousel.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [dealsCarousel.length]);
+  const promoBanners = [
+    {
+      title: "Aweeof the Month",
+      subtitle: "Up to 80% Off",
+      bgColor: "bg-red-500",
+      textColor: "text-white",
+      link: "/deals/month",
+    },
+    {
+      title: "★ FREE DELIVERY",
+      subtitle: "FREE Delivery",
+      bgColor: "bg-green-600",
+      textColor: "text-white",
+      link: "/shipping",
+    },
+    {
+      title: "BUY 2 PAY 1",
+      subtitle: "Select Items",
+      bgColor: "bg-blue-600",
+      textColor: "text-white",
+      link: "/deals/buy2pay1",
+    },
+    {
+      title: "BUY 2 ITEMS",
+      subtitle: "GET ₦950 OFF",
+      bgColor: "bg-orange-500",
+      textColor: "text-white",
+      link: "/deals/discount",
+    },
+    {
+      title: "JUMIA FORCE",
+      subtitle: "JOIN NOW",
+      bgColor: "bg-orange-600",
+      textColor: "text-white",
+      link: "/force",
+    },
+    {
+      title: "Earn While You Sell",
+      subtitle: "Start Selling",
+      bgColor: "bg-gray-700",
+      textColor: "text-white",
+      link: "/sell",
+    },
+  ];
 
-  const goToPreviousDeal = () => {
-    setCurrentDealIndex((prev) =>
-      prev === 0 ? dealsCarousel.length - 1 : prev - 1,
-    );
-  };
-
-  const goToNextDeal = () => {
-    setCurrentDealIndex((prev) => (prev + 1) % dealsCarousel.length);
-  };
-
-  const currentDeal = dealsCarousel[currentDealIndex];
+  const featuredProducts = [
+    {
+      id: 1,
+      name: "iPhone 14 Pro Max",
+      price: "₦580,000",
+      originalPrice: "₦650,000",
+      image:
+        "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=300&h=300&fit=crop",
+      discount: "11%",
+      rating: 4.5,
+      reviews: 234,
+    },
+    {
+      id: 2,
+      name: "Samsung Galaxy S23",
+      price: "₦420,000",
+      originalPrice: "₦480,000",
+      image:
+        "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=300&h=300&fit=crop",
+      discount: "13%",
+      rating: 4.3,
+      reviews: 189,
+    },
+    {
+      id: 3,
+      name: "MacBook Air M2",
+      price: "₦750,000",
+      originalPrice: "₦850,000",
+      image:
+        "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=300&h=300&fit=crop",
+      discount: "12%",
+      rating: 4.8,
+      reviews: 156,
+    },
+    {
+      id: 4,
+      name: "Sony WH-1000XM4",
+      price: "₦85,000",
+      originalPrice: "₦105,000",
+      image:
+        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300&h=300&fit=crop",
+      discount: "19%",
+      rating: 4.6,
+      reviews: 298,
+    },
+  ];
 
   const handleAddToCart = (product: any) => {
     addToCart({
       id: product.id,
       name: product.name,
-      price: product.price,
-      originalPrice: product.originalPrice,
+      price: parseFloat(product.price.replace(/[₦,]/g, "")),
+      originalPrice: product.originalPrice
+        ? parseFloat(product.originalPrice.replace(/[₦,]/g, ""))
+        : undefined,
       image: product.image,
       inStock: true,
       category: "Electronics",
-      brand: "TechPro",
+      brand: "EliteStore",
     });
   };
 
@@ -130,629 +187,216 @@ export default function Index() {
     toggleFavorite({
       id: product.id,
       name: product.name,
-      price: product.price,
-      originalPrice: product.originalPrice,
+      price: parseFloat(product.price.replace(/[₦,]/g, "")),
+      originalPrice: product.originalPrice
+        ? parseFloat(product.originalPrice.replace(/[₦,]/g, ""))
+        : undefined,
       image: product.image,
-      rating: product.rating,
-      reviews: product.reviews,
+      rating: product.rating || 4.5,
+      reviews: product.reviews || 100,
       category: "Electronics",
-      brand: "TechPro",
+      brand: "EliteStore",
       inStock: true,
     });
   };
 
-  const featuredProducts = [
-    {
-      id: 1,
-      name: "Wireless Headphones Pro",
-      price: 199.99,
-      originalPrice: 249.99,
-      image: "/placeholder.svg",
-      rating: 4.8,
-      reviews: 245,
-      badge: "Best Seller",
-    },
-    {
-      id: 2,
-      name: "Smart Watch Series 5",
-      price: 299.99,
-      originalPrice: 399.99,
-      image: "/placeholder.svg",
-      rating: 4.9,
-      reviews: 189,
-      badge: "New",
-    },
-    {
-      id: 3,
-      name: "Gaming Laptop Ultra",
-      price: 1299.99,
-      originalPrice: 1599.99,
-      image: "/placeholder.svg",
-      rating: 4.7,
-      reviews: 98,
-      badge: "Limited",
-    },
-    {
-      id: 4,
-      name: "4K Webcam",
-      price: 89.99,
-      originalPrice: 129.99,
-      image: "/placeholder.svg",
-      rating: 4.6,
-      reviews: 156,
-      badge: "Sale",
-    },
-  ];
-
-  const categories = [
-    {
-      name: "Electronics",
-      image: "/placeholder.svg",
-      itemCount: "2,500+",
-      link: "/categories/electronics",
-    },
-    {
-      name: "Fashion",
-      image: "/placeholder.svg",
-      itemCount: "5,200+",
-      link: "/categories/fashion",
-    },
-    {
-      name: "Home & Garden",
-      image: "/placeholder.svg",
-      itemCount: "1,800+",
-      link: "/categories/home",
-    },
-    {
-      name: "Sports",
-      image: "/placeholder.svg",
-      itemCount: "950+",
-      link: "/categories/sports",
-    },
-  ];
-
-  const benefits = [
-    {
-      icon: Truck,
-      title: "Free Shipping",
-      description: "On orders over $50",
-    },
-    {
-      icon: Shield,
-      title: "Secure Payment",
-      description: "100% protected",
-    },
-    {
-      icon: Headphones,
-      title: "24/7 Support",
-      description: "Dedicated support",
-    },
-    {
-      icon: Zap,
-      title: "Fast Delivery",
-      description: "Same day available",
-    },
-  ];
+  // Auto-rotate hero slides
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [heroSlides.length]);
 
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary/10 via-background to-accent/5 py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-4xl mx-auto">
-            <div className="space-y-8">
-              <div className="space-y-6">
-                <Badge className="w-fit mx-auto">
-                  <Zap className="w-3 h-3 mr-1" />
-                  New Collection 2024
-                </Badge>
-                <h1 className="text-4xl md:text-6xl font-bold leading-tight">
-                  Discover Amazing
-                  <span className="text-primary block">Products</span>
-                </h1>
-                <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                  Shop the latest trends with unbeatable prices and premium
-                  quality. Free shipping on orders over $50.
-                </p>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" className="text-lg px-8 py-6" asChild>
-                  <Link to="/products">
-                    Shop Now
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Link>
-                </Button>
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="text-lg px-8 py-6"
-                  asChild
-                >
-                  <Link to="/deals">View Deals</Link>
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Deals Carousel */}
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">🔥 Hot Deals Alert</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Don't miss out on these incredible limited-time offers. Save big
-              on your favorite products!
-            </p>
-          </div>
-
-          <div className="relative max-w-6xl mx-auto">
-            {/* Main Deal Card */}
-            <Card className="overflow-hidden bg-gradient-to-r from-background to-muted/50 border-2">
+    <div className="min-h-screen bg-gray-50">
+      {/* Main Content */}
+      <div className="container mx-auto px-4 py-6">
+        <div className="grid lg:grid-cols-5 gap-6">
+          {/* Sidebar Categories */}
+          <div className="lg:col-span-1">
+            <Card className="bg-white shadow-sm">
               <CardContent className="p-0">
-                <div className="grid lg:grid-cols-2 gap-0">
-                  {/* Deal Content */}
-                  <div
-                    className={cn(
-                      "p-8 lg:p-12 flex flex-col justify-center bg-gradient-to-br",
-                      currentDeal.bgGradient,
-                    )}
-                  >
-                    {/* Badge */}
-                    <div className="flex items-center gap-3 mb-6">
-                      <Badge
-                        className={cn(
-                          "text-white font-bold px-3 py-1.5 text-sm",
-                          currentDeal.badgeColor,
-                        )}
+                <div className="py-3 px-4 bg-orange-500 text-white font-semibold">
+                  Categories
+                </div>
+                <div className="divide-y">
+                  {categories.map((category, index) => {
+                    const Icon = category.icon;
+                    return (
+                      <Link
+                        key={index}
+                        to={category.link}
+                        className="flex items-center gap-3 px-4 py-3 hover:bg-orange-50 transition-colors group"
                       >
-                        {currentDeal.badge}
-                      </Badge>
-                      <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                        <Clock className="h-4 w-4" />
-                        <span className="font-mono font-medium">
-                          {currentDeal.timeLeft}
+                        <Icon className="h-4 w-4 text-gray-500 group-hover:text-orange-500" />
+                        <span className="text-sm text-gray-700 group-hover:text-orange-600">
+                          {category.name}
                         </span>
-                      </div>
-                    </div>
+                        <ChevronRight className="h-3 w-3 text-gray-400 ml-auto" />
+                      </Link>
+                    );
+                  })}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
 
-                    {/* Content */}
-                    <div className="space-y-4 mb-8">
-                      <div className="flex items-center gap-2">
-                        <currentDeal.icon className="h-6 w-6 text-primary" />
-                        <h3 className="text-2xl lg:text-3xl font-bold">
-                          {currentDeal.title}
-                        </h3>
+          {/* Main Hero Section */}
+          <div className="lg:col-span-4">
+            {/* Hero Banner */}
+            <Card className="mb-6 overflow-hidden bg-gradient-to-r from-orange-400 to-orange-600">
+              <CardContent className="p-0">
+                <div className="relative h-80 bg-gradient-to-r from-orange-500 to-red-500">
+                  <div className="absolute inset-0 flex items-center justify-between p-8">
+                    {/* Left Content */}
+                    <div className="text-white">
+                      <h1 className="text-4xl font-bold mb-2">
+                        Aweeof the Month
+                      </h1>
+                      <h2 className="text-6xl font-bold mb-4">July</h2>
+                      <div className="flex items-center gap-4 mb-4">
+                        <div className="bg-white/20 backdrop-blur-sm rounded-lg p-3">
+                          <Truck className="h-6 w-6" />
+                        </div>
+                        <div>
+                          <div className="text-sm">Pay on</div>
+                          <div className="font-semibold">Delivery</div>
+                        </div>
                       </div>
-                      <h4 className="text-xl lg:text-2xl text-primary font-semibold">
-                        {currentDeal.subtitle}
-                      </h4>
-                      <p className="text-muted-foreground text-lg leading-relaxed">
-                        {currentDeal.description}
+                      <p className="text-sm opacity-90 mb-6">
+                        *T&Cs Apply| Free Delivery
                       </p>
-                    </div>
-
-                    {/* Action Buttons */}
-                    <div className="flex flex-col sm:flex-row gap-3">
-                      <Button asChild size="lg" className="flex-1">
-                        <Link to={currentDeal.dealUrl}>
-                          Learn More & Shop Now
-                          <ArrowRight className="ml-2 h-4 w-4" />
-                        </Link>
-                      </Button>
-                      <Button variant="outline" size="lg" asChild>
-                        <Link to="/deals">View All Deals</Link>
+                      <Button
+                        className="bg-white text-orange-600 hover:bg-gray-100 font-semibold px-6"
+                        asChild
+                      >
+                        <Link to="/deals">SHOP NOW</Link>
                       </Button>
                     </div>
-                  </div>
 
-                  {/* Deal Image */}
-                  <div className="relative h-64 lg:h-auto">
-                    <img
-                      src={currentDeal.image}
-                      alt={currentDeal.title}
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                    {/* Right Products */}
+                    <div className="flex gap-4">
+                      {/* Product 1 */}
+                      <div className="bg-white rounded-xl p-4 shadow-lg">
+                        <img
+                          src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=120&h=120&fit=crop"
+                          alt="Dr Teals"
+                          className="w-20 h-20 object-cover rounded-lg mb-2"
+                        />
+                        <div className="text-xs text-gray-600 mb-1">
+                          Dr Teals Body Wash
+                        </div>
+                        <div className="text-sm font-bold text-red-600">
+                          ₦7,500
+                        </div>
+                        <div className="text-xs text-gray-500 line-through">
+                          ₦10,500
+                        </div>
+                      </div>
+
+                      {/* Product 2 - Featured */}
+                      <div className="bg-white rounded-xl p-4 shadow-lg relative">
+                        <Badge className="absolute -top-2 -right-2 bg-red-500 text-white text-xs">
+                          EXCLUSIVE
+                        </Badge>
+                        <img
+                          src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=120&h=120&fit=crop"
+                          alt="Adidas"
+                          className="w-20 h-20 object-cover rounded-lg mb-2"
+                        />
+                        <div className="text-lg font-bold text-orange-600">
+                          ₦31,990
+                        </div>
+                      </div>
+
+                      {/* Product 3 */}
+                      <div className="bg-white rounded-xl p-4 shadow-lg">
+                        <div className="bg-orange-100 rounded-lg p-2 mb-2 text-center">
+                          <div className="text-xs font-semibold">POP 9</div>
+                        </div>
+                        <div className="text-xs text-gray-600 mb-1">
+                          Pop Socket
+                        </div>
+                        <div className="text-sm font-bold text-green-600">
+                          ₦109,999
+                        </div>
+                        <div className="text-xs text-gray-500 line-through">
+                          ₦140,335
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            {/* Navigation Arrows */}
-            <div className="absolute inset-y-0 left-0 flex items-center">
-              <Button
-                variant="outline"
-                size="icon"
-                className="-ml-6 bg-background/90 backdrop-blur hover:bg-background shadow-lg"
-                onClick={goToPreviousDeal}
-              >
-                <ChevronLeft className="h-4 w-4" />
-              </Button>
-            </div>
-            <div className="absolute inset-y-0 right-0 flex items-center">
-              <Button
-                variant="outline"
-                size="icon"
-                className="-mr-6 bg-background/90 backdrop-blur hover:bg-background shadow-lg"
-                onClick={goToNextDeal}
-              >
-                <ChevronRight className="h-4 w-4" />
-              </Button>
-            </div>
-
-            {/* Dots Indicator */}
-            <div className="flex justify-center mt-8 gap-2">
-              {dealsCarousel.map((_, index) => (
-                <button
-                  key={index}
-                  className={cn(
-                    "w-3 h-3 rounded-full transition-all duration-300",
-                    currentDealIndex === index
-                      ? "bg-primary w-8"
-                      : "bg-muted-foreground/30 hover:bg-muted-foreground/50",
-                  )}
-                  onClick={() => setCurrentDealIndex(index)}
-                />
-              ))}
-            </div>
-
-            {/* Mini Deal Previews */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
-              {dealsCarousel.map((deal, index) => {
-                const Icon = deal.icon;
-                return (
+            {/* Promo Banners Grid */}
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-6">
+              {promoBanners.map((banner, index) => (
+                <Link key={index} to={banner.link}>
                   <Card
-                    key={deal.id}
                     className={cn(
-                      "cursor-pointer transition-all duration-300 hover:shadow-md",
-                      currentDealIndex === index
-                        ? "ring-2 ring-primary bg-primary/5"
-                        : "hover:bg-muted/50",
+                      "overflow-hidden hover:shadow-lg transition-all duration-300 cursor-pointer transform hover:scale-105",
+                      banner.bgColor,
                     )}
-                    onClick={() => setCurrentDealIndex(index)}
                   >
-                    <CardContent className="p-4">
-                      <div className="flex items-center gap-3">
-                        <div
-                          className={cn(
-                            "w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold",
-                            deal.badgeColor,
-                          )}
-                        >
-                          <Icon className="h-5 w-5" />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <h4 className="font-semibold text-sm truncate">
-                            {deal.title}
-                          </h4>
-                          <p className="text-xs text-muted-foreground">
-                            {deal.badge}
-                          </p>
-                        </div>
+                    <CardContent
+                      className={cn("p-4 text-center", banner.textColor)}
+                    >
+                      <div className="font-bold text-sm mb-1">
+                        {banner.title}
+                      </div>
+                      <div className="text-xs opacity-90">
+                        {banner.subtitle}
                       </div>
                     </CardContent>
                   </Card>
-                );
-              })}
+                </Link>
+              ))}
             </div>
           </div>
         </div>
-      </section>
 
-      {/* Benefits */}
-      <section className="py-16 border-b">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            {benefits.map((benefit, index) => {
-              const Icon = benefit.icon;
-              return (
-                <div key={index} className="text-center space-y-3">
-                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
-                    <Icon className="h-6 w-6 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold">{benefit.title}</h3>
-                    <p className="text-sm text-muted-foreground">
-                      {benefit.description}
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Deals Preview */}
-      <section className="py-20 bg-gradient-to-r from-destructive/10 via-destructive/5 to-destructive/10">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <div className="flex justify-center items-center gap-2 mb-4">
-              <Flame className="w-8 h-8 text-destructive animate-pulse" />
-              <h2 className="text-3xl md:text-4xl font-bold">Hot Deals</h2>
-              <Flame className="w-8 h-8 text-destructive animate-pulse" />
-            </div>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-6">
-              Limited time offers with incredible savings
-            </p>
-            <div className="flex justify-center items-center gap-4 text-lg font-mono mb-8">
-              <div className="bg-destructive text-destructive-foreground px-4 py-2 rounded-lg shadow-lg">
-                <span className="block text-xs text-destructive-foreground/80">
-                  Hours
-                </span>
-                12
-              </div>
-              <span className="text-destructive animate-pulse">:</span>
-              <div className="bg-destructive text-destructive-foreground px-4 py-2 rounded-lg shadow-lg">
-                <span className="block text-xs text-destructive-foreground/80">
-                  Min
-                </span>
-                34
-              </div>
-              <span className="text-destructive animate-pulse">:</span>
-              <div className="bg-destructive text-destructive-foreground px-4 py-2 rounded-lg shadow-lg">
-                <span className="block text-xs text-destructive-foreground/80">
-                  Sec
-                </span>
-                56
-              </div>
-            </div>
-          </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Deal 1 - Smart Watch */}
-            <Card className="group cursor-pointer hover:shadow-2xl transition-all duration-300 overflow-hidden border-2 border-destructive/20">
-              <CardContent className="p-0">
-                <div className="relative">
-                  <img
-                    src="https://cdn.builder.io/api/v1/image/assets%2F4c6409e754274ac6a8c3caf8620ed822%2F64c6e6170dfb41c997c833f5332eee03"
-                    alt="Smart Watch Pro"
-                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute top-3 left-3 flex flex-col gap-2">
-                    <Badge className="bg-destructive font-bold animate-pulse">
-                      <Flame className="w-3 h-3 mr-1" />
-                      Flash Sale
-                    </Badge>
-                    <Badge
-                      variant="secondary"
-                      className="text-destructive font-bold"
-                    >
-                      50% OFF
-                    </Badge>
-                  </div>
-                  <div className="absolute bottom-3 left-3 right-3">
-                    <Badge
-                      variant="destructive"
-                      className="w-full justify-center animate-pulse"
-                    >
-                      <Clock className="w-3 h-3 mr-1" />
-                      Ends in 12h 34m
-                    </Badge>
-                  </div>
-                </div>
-                <div className="p-4 space-y-3">
-                  <h3 className="font-semibold text-lg">
-                    Smart Watch Pro Series
-                  </h3>
-                  <div className="space-y-2">
-                    <div className="flex items-center gap-2">
-                      <span className="text-2xl font-bold text-destructive">
-                        $149.99
-                      </span>
-                      <span className="text-lg text-muted-foreground line-through">
-                        $299.99
-                      </span>
-                    </div>
-                    <div className="text-sm text-success font-medium">
-                      You save $150.00
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <div className="flex">
-                      {[...Array(5)].map((_, i) => (
-                        <Star
-                          key={i}
-                          className={`h-4 w-4 ${
-                            i < 4
-                              ? "text-yellow-400 fill-current"
-                              : "text-gray-300"
-                          }`}
-                        />
-                      ))}
-                    </div>
-                    <span className="text-sm text-muted-foreground">(245)</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Deal 2 - Wireless Headphones */}
-            <Card className="group cursor-pointer hover:shadow-2xl transition-all duration-300 overflow-hidden border-2 border-destructive/20">
-              <CardContent className="p-0">
-                <div className="relative">
-                  <img
-                    src="https://cdn.builder.io/api/v1/image/assets%2F4c6409e754274ac6a8c3caf8620ed822%2F44d3d9f05b0140bdbbb6589c07d6d85d"
-                    alt="Wireless Headphones"
-                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute top-3 left-3 flex flex-col gap-2">
-                    <Badge className="bg-warning font-bold">
-                      <Target className="w-3 h-3 mr-1" />
-                      Limited
-                    </Badge>
-                    <Badge
-                      variant="secondary"
-                      className="text-destructive font-bold"
-                    >
-                      50% OFF
-                    </Badge>
-                  </div>
-                  <div className="absolute bottom-3 left-3 right-3">
-                    <Badge
-                      variant="destructive"
-                      className="w-full justify-center"
-                    >
-                      <Flame className="w-3 h-3 mr-1" />
-                      Only 8 left!
-                    </Badge>
-                  </div>
-                </div>
-                <div className="p-4 space-y-3">
-                  <h3 className="font-semibold text-lg">
-                    Wireless Headphones Pro
-                  </h3>
-                  <div className="space-y-2">
-                    <div className="flex items-center gap-2">
-                      <span className="text-2xl font-bold text-destructive">
-                        $99.99
-                      </span>
-                      <span className="text-lg text-muted-foreground line-through">
-                        $199.99
-                      </span>
-                    </div>
-                    <div className="text-sm text-success font-medium">
-                      You save $100.00
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <div className="flex">
-                      {[...Array(5)].map((_, i) => (
-                        <Star
-                          key={i}
-                          className={`h-4 w-4 ${
-                            i < 4
-                              ? "text-yellow-400 fill-current"
-                              : "text-gray-300"
-                          }`}
-                        />
-                      ))}
-                    </div>
-                    <span className="text-sm text-muted-foreground">(189)</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Deal 3 - Gaming Laptop */}
-            <Card className="group cursor-pointer hover:shadow-2xl transition-all duration-300 overflow-hidden border-2 border-destructive/20">
-              <CardContent className="p-0">
-                <div className="relative">
-                  <img
-                    src="https://cdn.builder.io/api/v1/image/assets%2F4c6409e754274ac6a8c3caf8620ed822%2Fbd44033fd7f048c990dbef1d7f0c23bb"
-                    alt="Gaming Laptop"
-                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute top-3 left-3 flex flex-col gap-2">
-                    <Badge className="bg-info font-bold">
-                      <Zap className="w-3 h-3 mr-1" />
-                      Combo Deal
-                    </Badge>
-                    <Badge
-                      variant="secondary"
-                      className="text-destructive font-bold"
-                    >
-                      31% OFF
-                    </Badge>
-                  </div>
-                  <div className="absolute bottom-3 left-3 right-3">
-                    <Badge
-                      variant="destructive"
-                      className="w-full justify-center"
-                    >
-                      <Clock className="w-3 h-3 mr-1" />
-                      Ends in 1d 12h
-                    </Badge>
-                  </div>
-                </div>
-                <div className="p-4 space-y-3">
-                  <h3 className="font-semibold text-lg">
-                    Gaming Laptop Bundle
-                  </h3>
-                  <div className="space-y-2">
-                    <div className="flex items-center gap-2">
-                      <span className="text-2xl font-bold text-destructive">
-                        $899.99
-                      </span>
-                      <span className="text-lg text-muted-foreground line-through">
-                        $1299.99
-                      </span>
-                    </div>
-                    <div className="text-sm text-success font-medium">
-                      You save $400.00
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <div className="flex">
-                      {[...Array(5)].map((_, i) => (
-                        <Star
-                          key={i}
-                          className={`h-4 w-4 ${
-                            i < 4
-                              ? "text-yellow-400 fill-current"
-                              : "text-gray-300"
-                          }`}
-                        />
-                      ))}
-                    </div>
-                    <span className="text-sm text-muted-foreground">(98)</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          <div className="text-center mt-12">
-            <Button
-              size="lg"
-              className="bg-destructive hover:bg-destructive/90 text-lg px-8 py-6"
-              asChild
-            >
-              <Link to="/deals">
-                <Flame className="w-5 h-5 mr-2" />
-                View All Hot Deals
+        {/* Featured Products Section */}
+        <section className="mt-12">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-2xl font-bold text-gray-800">Top Deals</h2>
+            <Button variant="outline" asChild>
+              <Link to="/products">
+                See All
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
           </div>
-        </div>
-      </section>
 
-      {/* Featured Products */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Featured Products
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Discover our handpicked selection of premium products
-            </p>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
             {featuredProducts.map((product) => (
               <Card
                 key={product.id}
-                className="group cursor-pointer hover:shadow-lg transition-all duration-300"
+                className="group hover:shadow-lg transition-all duration-300 cursor-pointer overflow-hidden"
               >
                 <CardContent className="p-0">
                   <div className="relative">
                     <img
                       src={product.image}
                       alt={product.name}
-                      className="w-full h-48 object-cover rounded-t-lg"
+                      className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300"
                     />
-                    <Badge className="absolute top-3 left-3">
-                      {product.badge}
-                    </Badge>
-                    <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                    {product.discount && (
+                      <Badge className="absolute top-2 left-2 bg-red-500 text-white text-xs">
+                        -{product.discount}
+                      </Badge>
+                    )}
+                    <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
                       <Button
                         size="icon"
                         variant="secondary"
                         className="h-8 w-8"
-                        onClick={() => handleToggleFavorite(product)}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleToggleFavorite(product);
+                        }}
                       >
                         <Heart
                           className={cn(
@@ -765,13 +409,18 @@ export default function Index() {
                       </Button>
                     </div>
                   </div>
-                  <div className="p-4 space-y-3">
+
+                  <div className="p-3 space-y-2">
+                    <h3 className="font-medium text-sm line-clamp-2 text-gray-800">
+                      {product.name}
+                    </h3>
+
                     <div className="flex items-center gap-1">
                       <div className="flex">
                         {[...Array(5)].map((_, i) => (
                           <Star
                             key={i}
-                            className={`h-4 w-4 ${
+                            className={`h-3 w-3 ${
                               i < Math.floor(product.rating)
                                 ? "text-yellow-400 fill-current"
                                 : "text-gray-300"
@@ -779,121 +428,82 @@ export default function Index() {
                           />
                         ))}
                       </div>
-                      <span className="text-sm text-muted-foreground">
+                      <span className="text-xs text-gray-500">
                         ({product.reviews})
                       </span>
                     </div>
-                    <h3 className="font-semibold line-clamp-2">
-                      {product.name}
-                    </h3>
-                    <div className="flex items-center justify-between">
-                      <div className="space-y-1">
-                        <div className="flex items-center gap-2">
-                          <span className="text-lg font-bold">
-                            ${product.price}
-                          </span>
-                          <span className="text-sm text-muted-foreground line-through">
-                            ${product.originalPrice}
-                          </span>
-                        </div>
+
+                    <div className="space-y-1">
+                      <div className="text-lg font-bold text-orange-600">
+                        {product.price}
                       </div>
-                      <Button
-                        size="sm"
-                        className="opacity-0 group-hover:opacity-100 transition-opacity"
-                        onClick={() => handleAddToCart(product)}
-                      >
-                        <ShoppingCart className="h-4 w-4" />
-                      </Button>
+                      {product.originalPrice && (
+                        <div className="text-sm text-gray-500 line-through">
+                          {product.originalPrice}
+                        </div>
+                      )}
                     </div>
+
+                    <Button
+                      size="sm"
+                      className="w-full bg-orange-500 hover:bg-orange-600 text-white"
+                      onClick={() => handleAddToCart(product)}
+                    >
+                      <ShoppingCart className="h-4 w-4 mr-2" />
+                      {isInCart(product.id) ? "Added" : "Add to Cart"}
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
             ))}
           </div>
-          <div className="text-center mt-12">
-            <Button size="lg" variant="outline" asChild>
-              <Link to="/products">
-                View All Products
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Categories */}
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Shop by Category
-            </h2>
-            <p className="text-xl text-muted-foreground">
-              Find exactly what you're looking for
-            </p>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {categories.map((category, index) => (
-              <Link key={index} to={category.link}>
-                <Card className="group cursor-pointer hover:shadow-lg transition-all duration-300">
-                  <CardContent className="p-6 text-center space-y-4">
-                    <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
-                      <img
-                        src={category.image}
-                        alt={category.name}
-                        className="w-8 h-8"
-                      />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold mb-1">
-                        {category.name}
-                      </h3>
-                      <p className="text-sm text-muted-foreground">
-                        {category.itemCount} items
-                      </p>
-                    </div>
-                  </CardContent>
-                </Card>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <Card className="bg-gradient-to-r from-primary to-primary/80 border-0">
-            <CardContent className="p-12 text-center space-y-6">
-              <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground">
-                Ready to Start Shopping?
-              </h2>
-              <p className="text-xl text-primary-foreground/90 max-w-2xl mx-auto">
-                Join thousands of satisfied customers and discover amazing
-                products at unbeatable prices.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button
-                  size="lg"
-                  variant="secondary"
-                  className="text-lg px-8 py-6"
-                  asChild
-                >
-                  <Link to="/products">Start Shopping</Link>
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="text-lg px-8 py-6 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary"
-                  asChild
-                >
-                  <Link to="/deals">View Deals</Link>
-                </Button>
+        {/* Services Section */}
+        <section className="mt-16 py-12 bg-white rounded-lg">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div className="space-y-3">
+              <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto">
+                <Truck className="h-6 w-6 text-orange-600" />
               </div>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
+              <div>
+                <h3 className="font-semibold text-gray-800">FREE DELIVERY</h3>
+                <p className="text-sm text-gray-600">Orders over ₦10,000</p>
+              </div>
+            </div>
+
+            <div className="space-y-3">
+              <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto">
+                <RotateCcw className="h-6 w-6 text-orange-600" />
+              </div>
+              <div>
+                <h3 className="font-semibold text-gray-800">EASY RETURNS</h3>
+                <p className="text-sm text-gray-600">7-day return policy</p>
+              </div>
+            </div>
+
+            <div className="space-y-3">
+              <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto">
+                <Shield className="h-6 w-6 text-orange-600" />
+              </div>
+              <div>
+                <h3 className="font-semibold text-gray-800">SECURE PAYMENT</h3>
+                <p className="text-sm text-gray-600">100% protected</p>
+              </div>
+            </div>
+
+            <div className="space-y-3">
+              <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto">
+                <Headphones className="h-6 w-6 text-orange-600" />
+              </div>
+              <div>
+                <h3 className="font-semibold text-gray-800">24/7 SUPPORT</h3>
+                <p className="text-sm text-gray-600">Always here to help</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
   );
 }
