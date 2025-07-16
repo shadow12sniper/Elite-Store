@@ -509,11 +509,12 @@ export default function Index() {
                         onClick={() => handleToggleFavorite(product)}
                       >
                         <Heart
-                          className={`h-4 w-4 ${
+                          className={cn(
+                            "h-4 w-4",
                             isFavorite(product.id)
                               ? "fill-current text-red-500"
-                              : ""
-                          }`}
+                              : "",
+                          )}
                         />
                       </Button>
                     </div>
