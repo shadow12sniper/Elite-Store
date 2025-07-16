@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { useCart } from "@/contexts/CartContext";
+import { useFavorites } from "@/contexts/FavoritesContext";
 import {
   ArrowRight,
   Star,
@@ -17,6 +19,37 @@ import {
 } from "lucide-react";
 
 export default function Index() {
+  const { addToCart, isInCart } = useCart();
+  const { toggleFavorite, isFavorite } = useFavorites();
+
+  const handleAddToCart = (product: any) => {
+    addToCart({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      originalPrice: product.originalPrice,
+      image: product.image,
+      inStock: true,
+      category: "Electronics",
+      brand: "TechPro",
+    });
+  };
+
+  const handleToggleFavorite = (product: any) => {
+    toggleFavorite({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      originalPrice: product.originalPrice,
+      image: product.image,
+      rating: product.rating,
+      reviews: product.reviews,
+      category: "Electronics",
+      brand: "TechPro",
+      inStock: true,
+    });
+  };
+
   const featuredProducts = [
     {
       id: 1,
