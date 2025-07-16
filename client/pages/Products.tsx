@@ -1027,6 +1027,34 @@ export default function Products() {
     }
   };
 
+  const handleAddToCart = (product: any) => {
+    addToCart({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      originalPrice: product.originalPrice,
+      image: product.image,
+      inStock: product.inStock,
+      category: product.category,
+      brand: product.brand,
+    });
+  };
+
+  const handleToggleFavorite = (product: any) => {
+    toggleFavorite({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      originalPrice: product.originalPrice,
+      image: product.image,
+      rating: product.rating,
+      reviews: product.reviews,
+      category: product.category,
+      brand: product.brand,
+      inStock: product.inStock,
+    });
+  };
+
   const ProductDetailModal = ({ product }: { product: any }) => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const images = product.images || [product.image];
