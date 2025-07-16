@@ -43,17 +43,7 @@ const App = () => (
             />
             <Route path="/deals" element={<Deals />} />
             <Route path="/cart" element={<Cart />} />
-            <Route
-              path="/checkout"
-              element={
-                <div className="min-h-screen flex items-center justify-center">
-                  <div className="text-center">
-                    <h1 className="text-2xl font-bold mb-4">Checkout</h1>
-                    <p className="text-muted-foreground">Coming soon...</p>
-                  </div>
-                </div>
-              }
-            />
+            <Route path="/checkout" element={<Checkout />} />
             <Route
               path="/wishlist"
               element={
