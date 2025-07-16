@@ -488,7 +488,9 @@ export default function Checkout() {
                       <Checkbox
                         id="sameAsShipping"
                         checked={sameAsShipping}
-                        onCheckedChange={setSameAsShipping}
+                        onCheckedChange={(checked) =>
+                          setSameAsShipping(checked === true)
+                        }
                       />
                       <Label htmlFor="sameAsShipping">
                         Same as shipping address
