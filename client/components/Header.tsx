@@ -40,6 +40,9 @@ export function Header() {
             </SheetTrigger>
             <SheetContent side="left" className="w-80">
               <nav className="flex flex-col space-y-4 mt-4">
+                <Link to="/" className="text-lg font-medium hover:text-primary">
+                  Home
+                </Link>
                 <Link
                   to="/products"
                   className="text-lg font-medium hover:text-primary"
