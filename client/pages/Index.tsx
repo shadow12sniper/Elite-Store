@@ -16,12 +16,102 @@ import {
   Clock,
   Flame,
   Target,
+  ChevronLeft,
+  ChevronRight,
+  Percent,
+  Gift,
+  ShoppingBag,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useState, useEffect } from "react";
 
 export default function Index() {
   const { addToCart, isInCart } = useCart();
   const { toggleFavorite, isFavorite } = useFavorites();
+  const [currentDealIndex, setCurrentDealIndex] = useState(0);
+
+  const dealsCarousel = [
+    {
+      id: 1,
+      title: "Flash Sale Alert!",
+      subtitle: "Up to 70% Off Electronics",
+      description:
+        "Limited time offer on premium headphones, smartwatches, and more tech essentials.",
+      image:
+        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&h=400&fit=crop",
+      badge: "70% OFF",
+      badgeColor: "bg-red-500",
+      bgGradient: "from-red-500/20 to-pink-500/20",
+      dealUrl: "/deals?category=electronics",
+      timeLeft: "2:45:30",
+      icon: Zap,
+    },
+    {
+      id: 2,
+      title: "Weekend Special",
+      subtitle: "Buy 2 Get 1 Free Fashion",
+      description:
+        "Mix and match your favorite clothing items. Third item automatically discounted.",
+      image:
+        "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=400&fit=crop",
+      badge: "B2G1 FREE",
+      badgeColor: "bg-purple-500",
+      bgGradient: "from-purple-500/20 to-blue-500/20",
+      dealUrl: "/deals?category=fashion",
+      timeLeft: "1:12:15",
+      icon: ShoppingBag,
+    },
+    {
+      id: 3,
+      title: "New Customer Bonus",
+      subtitle: "25% Off First Order",
+      description:
+        "Welcome bonus for new shoppers. Use code WELCOME25 at checkout for instant savings.",
+      image:
+        "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=600&h=400&fit=crop",
+      badge: "25% OFF",
+      badgeColor: "bg-green-500",
+      bgGradient: "from-green-500/20 to-emerald-500/20",
+      dealUrl: "/deals?type=new-customer",
+      timeLeft: "23:55:42",
+      icon: Gift,
+    },
+    {
+      id: 4,
+      title: "Clearance Blowout",
+      subtitle: "Up to 80% Off Home Goods",
+      description:
+        "Last chance to grab premium home and kitchen items at unbeatable prices.",
+      image:
+        "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&h=400&fit=crop",
+      badge: "80% OFF",
+      badgeColor: "bg-orange-500",
+      bgGradient: "from-orange-500/20 to-yellow-500/20",
+      dealUrl: "/deals?category=home",
+      timeLeft: "4:33:18",
+      icon: Percent,
+    },
+  ];
+
+  // Auto-rotate deals every 5 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentDealIndex((prev) => (prev + 1) % dealsCarousel.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [dealsCarousel.length]);
+
+  const goToPreviousDeal = () => {
+    setCurrentDealIndex((prev) =>
+      prev === 0 ? dealsCarousel.length - 1 : prev - 1,
+    );
+  };
+
+  const goToNextDeal = () => {
+    setCurrentDealIndex((prev) => (prev + 1) % dealsCarousel.length);
+  };
+
+  const currentDeal = dealsCarousel[currentDealIndex];
 
   const handleAddToCart = (product: any) => {
     addToCart({
@@ -190,6 +280,171 @@ export default function Index() {
                   className="w-full h-full object-cover rounded-2xl"
                 />
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Deals Carousel */}
+      <section className="py-20 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">🔥 Hot Deals Alert</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Don't miss out on these incredible limited-time offers. Save big
+              on your favorite products!
+            </p>
+          </div>
+
+          <div className="relative max-w-6xl mx-auto">
+            {/* Main Deal Card */}
+            <Card className="overflow-hidden bg-gradient-to-r from-background to-muted/50 border-2">
+              <CardContent className="p-0">
+                <div className="grid lg:grid-cols-2 gap-0">
+                  {/* Deal Content */}
+                  <div
+                    className={cn(
+                      "p-8 lg:p-12 flex flex-col justify-center bg-gradient-to-br",
+                      currentDeal.bgGradient,
+                    )}
+                  >
+                    {/* Badge */}
+                    <div className="flex items-center gap-3 mb-6">
+                      <Badge
+                        className={cn(
+                          "text-white font-bold px-3 py-1.5 text-sm",
+                          currentDeal.badgeColor,
+                        )}
+                      >
+                        {currentDeal.badge}
+                      </Badge>
+                      <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                        <Clock className="h-4 w-4" />
+                        <span className="font-mono font-medium">
+                          {currentDeal.timeLeft}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Content */}
+                    <div className="space-y-4 mb-8">
+                      <div className="flex items-center gap-2">
+                        <currentDeal.icon className="h-6 w-6 text-primary" />
+                        <h3 className="text-2xl lg:text-3xl font-bold">
+                          {currentDeal.title}
+                        </h3>
+                      </div>
+                      <h4 className="text-xl lg:text-2xl text-primary font-semibold">
+                        {currentDeal.subtitle}
+                      </h4>
+                      <p className="text-muted-foreground text-lg leading-relaxed">
+                        {currentDeal.description}
+                      </p>
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="flex flex-col sm:flex-row gap-3">
+                      <Button asChild size="lg" className="flex-1">
+                        <Link to={currentDeal.dealUrl}>
+                          Learn More & Shop Now
+                          <ArrowRight className="ml-2 h-4 w-4" />
+                        </Link>
+                      </Button>
+                      <Button variant="outline" size="lg" asChild>
+                        <Link to="/deals">View All Deals</Link>
+                      </Button>
+                    </div>
+                  </div>
+
+                  {/* Deal Image */}
+                  <div className="relative h-64 lg:h-auto">
+                    <img
+                      src={currentDeal.image}
+                      alt={currentDeal.title}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Navigation Arrows */}
+            <div className="absolute inset-y-0 left-0 flex items-center">
+              <Button
+                variant="outline"
+                size="icon"
+                className="-ml-6 bg-background/90 backdrop-blur hover:bg-background shadow-lg"
+                onClick={goToPreviousDeal}
+              >
+                <ChevronLeft className="h-4 w-4" />
+              </Button>
+            </div>
+            <div className="absolute inset-y-0 right-0 flex items-center">
+              <Button
+                variant="outline"
+                size="icon"
+                className="-mr-6 bg-background/90 backdrop-blur hover:bg-background shadow-lg"
+                onClick={goToNextDeal}
+              >
+                <ChevronRight className="h-4 w-4" />
+              </Button>
+            </div>
+
+            {/* Dots Indicator */}
+            <div className="flex justify-center mt-8 gap-2">
+              {dealsCarousel.map((_, index) => (
+                <button
+                  key={index}
+                  className={cn(
+                    "w-3 h-3 rounded-full transition-all duration-300",
+                    currentDealIndex === index
+                      ? "bg-primary w-8"
+                      : "bg-muted-foreground/30 hover:bg-muted-foreground/50",
+                  )}
+                  onClick={() => setCurrentDealIndex(index)}
+                />
+              ))}
+            </div>
+
+            {/* Mini Deal Previews */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
+              {dealsCarousel.map((deal, index) => {
+                const Icon = deal.icon;
+                return (
+                  <Card
+                    key={deal.id}
+                    className={cn(
+                      "cursor-pointer transition-all duration-300 hover:shadow-md",
+                      currentDealIndex === index
+                        ? "ring-2 ring-primary bg-primary/5"
+                        : "hover:bg-muted/50",
+                    )}
+                    onClick={() => setCurrentDealIndex(index)}
+                  >
+                    <CardContent className="p-4">
+                      <div className="flex items-center gap-3">
+                        <div
+                          className={cn(
+                            "w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold",
+                            deal.badgeColor,
+                          )}
+                        >
+                          <Icon className="h-5 w-5" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <h4 className="font-semibold text-sm truncate">
+                            {deal.title}
+                          </h4>
+                          <p className="text-xs text-muted-foreground">
+                            {deal.badge}
+                          </p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                );
+              })}
             </div>
           </div>
         </div>
