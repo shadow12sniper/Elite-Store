@@ -17,6 +17,7 @@ import {
   Flame,
   Target,
 } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export default function Index() {
   const { addToCart, isInCart } = useCart();
