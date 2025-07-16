@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useCart } from "@/contexts/CartContext";
+import { useFavorites } from "@/contexts/FavoritesContext";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -58,45 +60,9 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-interface CartItem {
-  id: string;
-  name: string;
-  price: number;
-  originalPrice?: number;
-  image: string;
-  images?: string[];
-  quantity: number;
-  variant?: {
-    size?: string;
-    color?: string;
-    model?: string;
-  };
-  inStock: boolean;
-  stockCount: number;
-  estimatedDelivery: string;
-  rating: number;
-  reviews: number;
-  description?: string;
-  features?: string[];
-  specifications?: { [key: string]: string };
-  category: string;
-  brand: string;
-  reviewSummary?: {
-    totalReviews: number;
-    averageRating: number;
-    ratingBreakdown: { [key: number]: number };
-    topReviews: Array<{
-      user: string;
-      rating: number;
-      comment: string;
-      date: string;
-      verified: boolean;
-    }>;
-  };
-}
-
 export default function Cart() {
-  const [cartItems, setCartItems] = useState<CartItem[]>([
+  const { items: cartItems, updateQuantity, removeFromCart, getSubtotal, clearCart } = useCart();
+  const { toggleFavorite, isFavorite } = useFavorites();
     {
       id: "1",
       name: "Smart Watch Pro Series",
