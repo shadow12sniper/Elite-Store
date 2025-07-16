@@ -1751,18 +1751,33 @@ export default function Products() {
                                   <Button
                                     size="icon"
                                     variant="outline"
-                                    onClick={(e) => e.stopPropagation()}
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      handleToggleFavorite(product);
+                                    }}
                                   >
-                                    <Heart className="h-4 w-4" />
+                                    <Heart
+                                      className={cn(
+                                        "h-4 w-4",
+                                        isFavorite(product.id)
+                                          ? "fill-current text-red-500"
+                                          : "",
+                                      )}
+                                    />
                                   </Button>
                                   <Button
                                     disabled={!product.inStock}
-                                    onClick={(e) => e.stopPropagation()}
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      handleAddToCart(product);
+                                    }}
                                   >
                                     <ShoppingCart className="h-4 w-4 mr-2" />
-                                    {product.inStock
-                                      ? "Add to Cart"
-                                      : "Out of Stock"}
+                                    {!product.inStock
+                                      ? "Out of Stock"
+                                      : isInCart(product.id)
+                                        ? "Added"
+                                        : "Add to Cart"}
                                   </Button>
                                 </div>
                               </div>
