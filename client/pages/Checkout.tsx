@@ -527,7 +527,113 @@ export default function Checkout() {
                             />
                           </div>
                         </div>
-                        {/* Add other billing fields similar to shipping */}
+
+                        <div>
+                          <Label htmlFor="billAddress">Street Address *</Label>
+                          <Input
+                            id="billAddress"
+                            required
+                            value={billingInfo.address}
+                            onChange={(e) =>
+                              setBillingInfo({
+                                ...billingInfo,
+                                address: e.target.value,
+                              })
+                            }
+                          />
+                        </div>
+
+                        <div>
+                          <Label htmlFor="billApartment">
+                            Apartment, Suite, etc. (Optional)
+                          </Label>
+                          <Input
+                            id="billApartment"
+                            value={billingInfo.apartment}
+                            onChange={(e) =>
+                              setBillingInfo({
+                                ...billingInfo,
+                                apartment: e.target.value,
+                              })
+                            }
+                          />
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-4">
+                          <div>
+                            <Label htmlFor="billCity">City *</Label>
+                            <Input
+                              id="billCity"
+                              required
+                              value={billingInfo.city}
+                              onChange={(e) =>
+                                setBillingInfo({
+                                  ...billingInfo,
+                                  city: e.target.value,
+                                })
+                              }
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="billState">State *</Label>
+                            <Select
+                              value={billingInfo.state}
+                              onValueChange={(value) =>
+                                setBillingInfo({ ...billingInfo, state: value })
+                              }
+                            >
+                              <SelectTrigger>
+                                <SelectValue placeholder="Select state" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="CA">California</SelectItem>
+                                <SelectItem value="NY">New York</SelectItem>
+                                <SelectItem value="TX">Texas</SelectItem>
+                                <SelectItem value="FL">Florida</SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </div>
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-4">
+                          <div>
+                            <Label htmlFor="billZipCode">ZIP Code *</Label>
+                            <Input
+                              id="billZipCode"
+                              required
+                              value={billingInfo.zipCode}
+                              onChange={(e) =>
+                                setBillingInfo({
+                                  ...billingInfo,
+                                  zipCode: e.target.value,
+                                })
+                              }
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="billCountry">Country *</Label>
+                            <Select
+                              value={billingInfo.country}
+                              onValueChange={(value) =>
+                                setBillingInfo({
+                                  ...billingInfo,
+                                  country: value,
+                                })
+                              }
+                            >
+                              <SelectTrigger>
+                                <SelectValue />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="US">
+                                  United States
+                                </SelectItem>
+                                <SelectItem value="CA">Canada</SelectItem>
+                                <SelectItem value="MX">Mexico</SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </div>
+                        </div>
                       </div>
                     )}
                   </CardContent>
