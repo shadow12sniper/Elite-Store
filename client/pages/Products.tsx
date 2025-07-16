@@ -1630,9 +1630,19 @@ export default function Products() {
                                 size="icon"
                                 variant="secondary"
                                 className="h-8 w-8"
-                                onClick={(e) => e.stopPropagation()}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  handleToggleFavorite(product);
+                                }}
                               >
-                                <Heart className="h-4 w-4" />
+                                <Heart
+                                  className={cn(
+                                    "h-4 w-4",
+                                    isFavorite(product.id)
+                                      ? "fill-current text-red-500"
+                                      : "",
+                                  )}
+                                />
                               </Button>
                             </div>
                           </div>
