@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -15,6 +15,23 @@ import { Search, ShoppingCart, User, Heart, Menu, Zap } from "lucide-react";
 export function Header() {
   const [cartCount] = useState(3); // Mock cart count
   const [wishlistCount] = useState(5); // Mock wishlist count
+  const [searchQuery, setSearchQuery] = useState("");
+  const [showMobileSearch, setShowMobileSearch] = useState(false);
+  const navigate = useNavigate();
+
+  const handleSearch = () => {
+    if (searchQuery.trim()) {
+      navigate(`/products?search=${encodeURIComponent(searchQuery.trim())}`);
+      setSearchQuery("");
+      setShowMobileSearch(false);
+    }
+  };
+
+  const handleSearchKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
+  };
 
   return (
     <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
@@ -141,15 +158,30 @@ export function Header() {
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
               <Input
                 placeholder="Search products..."
-                className="pl-10 bg-muted/50"
+                className="pl-10 pr-12 bg-muted/50"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyPress={handleSearchKeyPress}
               />
+              <Button
+                size="sm"
+                className="absolute right-1 top-1/2 transform -translate-y-1/2 h-8 px-3"
+                onClick={handleSearch}
+              >
+                <Search className="h-4 w-4" />
+              </Button>
             </div>
           </div>
 
           {/* Actions */}
           <div className="flex items-center space-x-2">
             {/* Mobile search */}
-            <Button variant="ghost" size="icon" className="lg:hidden">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="lg:hidden"
+              onClick={() => setShowMobileSearch(!showMobileSearch)}
+            >
               <Search className="h-5 w-5" />
             </Button>
 
@@ -201,6 +233,30 @@ export function Header() {
             </DropdownMenu>
           </div>
         </div>
+
+        {/* Mobile Search Bar */}
+        {showMobileSearch && (
+          <div className="lg:hidden border-t bg-background p-4">
+            <div className="relative w-full">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+              <Input
+                placeholder="Search products..."
+                className="pl-10 pr-12 bg-muted/50"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyPress={handleSearchKeyPress}
+                autoFocus
+              />
+              <Button
+                size="sm"
+                className="absolute right-1 top-1/2 transform -translate-y-1/2 h-8 px-3"
+                onClick={handleSearch}
+              >
+                <Search className="h-4 w-4" />
+              </Button>
+            </div>
+          </div>
+        )}
       </div>
     </header>
   );
