@@ -17,6 +17,7 @@ import Deals from "./pages/Deals";
 import Cart from "./pages/Cart";
 import Categories from "./pages/Categories";
 import Checkout from "./pages/Checkout";
+import Wishlist from "./pages/Wishlist";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -54,19 +55,7 @@ const App = () => (
                   <Route path="/deals" element={<Deals />} />
                   <Route path="/cart" element={<Cart />} />
                   <Route path="/checkout" element={<Checkout />} />
-                  <Route
-                    path="/wishlist"
-                    element={
-                      <div className="min-h-screen flex items-center justify-center">
-                        <div className="text-center">
-                          <h1 className="text-2xl font-bold mb-4">Wishlist</h1>
-                          <p className="text-muted-foreground">
-                            Coming soon...
-                          </p>
-                        </div>
-                      </div>
-                    }
-                  />
+                  <Route path="/wishlist" element={<Wishlist />} />
                   <Route
                     path="/account"
                     element={
