@@ -239,10 +239,10 @@ export default function Index() {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-primary/10 via-background to-accent/5 py-20">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="text-center max-w-4xl mx-auto">
             <div className="space-y-8">
               <div className="space-y-6">
-                <Badge className="w-fit">
+                <Badge className="w-fit mx-auto">
                   <Zap className="w-3 h-3 mr-1" />
                   New Collection 2024
                 </Badge>
@@ -250,12 +250,12 @@ export default function Index() {
                   Discover Amazing
                   <span className="text-primary block">Products</span>
                 </h1>
-                <p className="text-xl text-muted-foreground max-w-lg">
+                <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
                   Shop the latest trends with unbeatable prices and premium
                   quality. Free shipping on orders over $50.
                 </p>
               </div>
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="text-lg px-8 py-6" asChild>
                   <Link to="/products">
                     Shop Now
@@ -270,15 +270,6 @@ export default function Index() {
                 >
                   <Link to="/deals">View Deals</Link>
                 </Button>
-              </div>
-            </div>
-            <div className="relative">
-              <div className="aspect-square rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
-                <img
-                  src="/placeholder.svg"
-                  alt="Hero Product"
-                  className="w-full h-full object-cover rounded-2xl"
-                />
               </div>
             </div>
           </div>
